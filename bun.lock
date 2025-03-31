@@ -1,0 +1,16 @@
+{
+  "lockfileVersion": 1,
+  "workspaces": {
+    "": {
+      "name": "artem",
+      "dependencies": {
+        "@prismicio/client": "^7.16.1",
+      },
+    },
+  },
+  "packages": {
+    "@prismicio/client": ["@prismicio/client@7.16.1", "", { "dependencies": { "imgix-url-builder": "^0.0.5" } }, "sha512-mH3JtysZyQv47OYWzuxp8vW3uWllMBJa6HD2j4cfc7vLCoxGxMrvH6Ttw12KMnChg2/exwFdq3K1OvHAtyEVdQ=="],
+
+    "imgix-url-builder": ["imgix-url-builder@0.0.5", "", {}, "sha512-dCx3UlXghtsjySoqVCcHQHRikqDummwQEfKlxBUK/wrMzd+1ox/XX+zhqVuXKMVuZvCc84pVLEJyntQB0OOi/w=="],
+  }
+}

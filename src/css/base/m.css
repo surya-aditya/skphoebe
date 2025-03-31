@@ -1,0 +1,14 @@
+body {
+	position: relative;
+	background: var(--bg);
+}
+
+#_ {
+	position: relative;
+
+	color: var(--tx);
+	padding: calc(m-vw(15) + m-vw(var(--g))) m-vh(10);
+	width: calc(var(--c) * 5 + m-vw(var(--g) * 4));
+
+	box-sizing: border-box;
+}
