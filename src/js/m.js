@@ -1,9 +1,9 @@
-// import Grid from "./Grid"
-// new Grid({ _cta: false, _col: 15 })
+import Grid from "./Grid";
+new Grid([4, true]);
 
-// import Engine from "./_m/Engine";
-// import Intro from "./_m/Intro";
-// import Mutation from "./_m/Mutation";
-// import Controller from "./Global/Controller";
+import Engine from "./_m/Engine";
+import Intro from "./_m/Intro";
+import Mutation from "./_m/Mutation";
+import Controller from "./Global/Controller";
 
-// new Controller([true, Engine, Mutation, Intro]);
+new Controller([false, Engine, Mutation, Intro]);

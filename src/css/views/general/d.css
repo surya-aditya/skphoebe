@@ -1,0 +1,87 @@
+#ge-pr {
+	position: relative;
+	width: 100%;
+
+	margin-top: calc(206 * var(--vw));
+}
+
+#ge-pr > h1 {
+	position: absolute;
+	top: calc(25 * var(--vw));
+	left: 0;
+}
+
+#ge-pr > p {
+	font-family: "IBM Plex Serif", serif;
+	font-size: calc(40 * var(--vw));
+	line-height: calc(62 * var(--vw));
+	text-indent: calc(var(--c) + var(--g));
+}
+
+#ge-re {
+	display: flex;
+	justify-content: space-between;
+	padding-top: calc(110 * var(--vw));
+	padding-bottom: calc(173 * var(--vw));
+}
+
+#ge-re > div {
+	width: calc((var(--c) * 2) + (var(--g) * 2));
+}
+
+#ge-pr > h1,
+#ge-re > div {
+	font-size: calc(18 * var(--vw));
+	line-height: 1;
+
+	& span::before {
+		content: "[";
+	}
+
+	& span::after {
+		content: "]";
+	}
+}
+
+#ge-re > ul {
+	width: calc((var(--c) * 8) + (var(--g) * 7));
+
+	font-size: calc(22 * var(--vw));
+	line-height: 1;
+}
+
+#ge-re ul li {
+	display: flex;
+}
+
+#ge-re > ul > li {
+	padding-bottom: calc(20 * var(--vw));
+
+	& h2 {
+		position: relative;
+		width: calc((var(--c) * 3) + (var(--g) * 3));
+	}
+}
+
+#ge-re > ul > li > ul > li {
+	& h3 {
+		width: calc((var(--c) * 2) + (var(--g) * 2));
+	}
+}
+
+#ge-re > ul > li ul li {
+	padding-bottom: calc(20 * var(--vw));
+
+	& span {
+		display: inline-block;
+	}
+
+	& span:nth-of-type(1) {
+		width: calc((var(--c) * 2) + (var(--g) * 2));
+	}
+
+	& span:nth-of-type(2) {
+		width: var(--c);
+		text-align: right;
+	}
+}

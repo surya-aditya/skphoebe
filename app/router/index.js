@@ -1,4 +1,4 @@
-import { routes, studioName, types } from "./routes";
+import { routes, webName, types } from "./routes";
 
 import { getAllByType, getSingle } from "../lib/prismic";
 
@@ -133,6 +133,16 @@ export default class RouterManager {
 			return metadata;
 		} catch (error) {
 			console.error("Error fetching metadata:", error);
+			return {};
+		}
+	}
+
+	async getSharedItems() {
+		try {
+			const { data: sharedItems } = await getSingle("shared_items");
+			return sharedItems;
+		} catch (error) {
+			console.error("Error fetching shared items:", error);
 			return {};
 		}
 	}

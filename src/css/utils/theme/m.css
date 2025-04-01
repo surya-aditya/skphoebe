@@ -1,0 +1,11 @@
+[data-th="l"] {
+	--bg: var(--bg-light);
+	--tx: var(--tx-light);
+	--ac: var(--ac-light);
+}
+
+[data-th="d"] {
+	--bg: var(--bg-dark);
+	--tx: var(--tx-dark);
+	--ac: var(--ac-dark);
+}

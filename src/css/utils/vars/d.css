@@ -1,9 +1,19 @@
 :root {
-	--bg: #000;
-	--tx: #fff;
+	--bg-light: #ffffff;
+	--tx-light: #4a4337;
+	--ac-light: #807665;
 
-	--g: 15.1;
-	--c: d-vw(103.6);
+	--bg-dark: #2b2720;
+	--tx-dark: #dedad3;
+	--ac-dark: #78746d;
+
+	--vw: calc(100vw / 1920);
+	--vh: calc(100vh / 1080);
+
+	--m: calc(40 * var(--vw));
+	--g: calc(20 * var(--vw));
+
+	--c: calc(135 * var(--vw));
 
 	--o5: cubic-bezier(0.22, 1, 0.36, 1);
 	--o6: cubic-bezier(0.16, 1, 0.3, 1);

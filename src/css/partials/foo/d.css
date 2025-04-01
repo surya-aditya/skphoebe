@@ -1,0 +1,64 @@
+.f {
+	position: relative;
+	width: 100%;
+
+	display: flex;
+	align-items: center;
+
+	line-height: 1;
+
+	padding-bottom: var(--m);
+}
+
+.f-ho {
+	position: absolute;
+	bottom: var(--m);
+	left: var(--m);
+	right: var(--m);
+
+	padding-bottom: 0;
+}
+
+.f-cpr {
+	width: calc((var(--c) * 4) + (var(--g) * 4));
+}
+
+.f-con > a {
+	width: calc((var(--c) * 3) + (var(--g) * 3));
+}
+
+.f-con > ul {
+	width: calc((var(--c) * 3) + (var(--g) * 3));
+}
+
+.f > *:last-child {
+	width: calc((var(--c) * 2) + var(--g));
+	text-align: right;
+}
+
+.f-con,
+.f-con > ul {
+	display: flex;
+}
+
+@media (min-aspect-ratio: 1.778) {
+	.f {
+		font-size: calc(16 * var(--vh));
+		letter-spacing: calc(16 * 4 / 100 * var(--vh));
+	}
+
+	.f-con > ul {
+		column-gap: calc(20 * var(--vh));
+	}
+}
+
+@media (max-aspect-ratio: 1.778) {
+	.f {
+		font-size: calc(16 * var(--vw));
+		letter-spacing: calc(16 * 4 / 100 * var(--vw));
+	}
+
+	.f-con > ul {
+		column-gap: calc(20 * var(--vw));
+	}
+}

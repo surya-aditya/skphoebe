@@ -1,138 +1,132 @@
-let vars = {};
-
-// Config
-const desktop = {
-	w: 1440,
-	h: 900,
-};
-
-const mobile = {
-	w: 393,
-	h: 856,
-};
-
-// Px to Vw
-const vw = {
-	d: (px) => `${(px / desktop.w) * 100}vw`,
-	m: (px) => `${(px / mobile.w) * 100}vw`,
-};
-
-// Px to Vh
-const vh = {
-	d: (px) => `${(px / desktop.h) * 100}vh`,
-	m: (px) => `${(px / mobile.h) * 100}vh`,
-};
-
-export function calVw(contents) {
-	let prev;
-	let newContents = contents;
-	const regex = /([dm])-vw\(([^)]+)\)/g;
-	while (prev !== newContents) {
-		prev = newContents;
-		newContents = newContents.replace(regex, (match, device, innerExpr) => {
-			const expr = innerExpr.trim();
-			if (/^[\d+\-*/().\s]+$/.test(expr)) {
-				try {
-					const evaluated = Function('"use strict";return (' + expr + ")")();
-					return device.toLowerCase() === "d"
-						? vw.d(evaluated)
-						: vw.m(evaluated);
-				} catch (err) {
-					return match;
-				}
+/**
+ * Resolve simple numeric division within root CSS variables.
+ * Example: "--vw: calc(100vw / 1920);" → "--vw: .052083vw;"
+ */
+function resolveRootNumericDivisions(css) {
+	const vars = {};
+	css = css.replace(/:root\s*{([^}]+)}/, (match, content) => {
+		const updated = content.replace(
+			/--([\w-]+):\s*calc\(\s*(\d+(?:\.\d+)?)\s*(vw|vh|px|rem|em|%)\s*\/\s*(\d+(?:\.\d+)?)\s*\);/g,
+			(_, name, num, unit, div) => {
+				const resolved = (parseFloat(num) / parseFloat(div)).toFixed(6);
+				vars[`--${name}`] = `${resolved}${unit}`;
+				return `--${name}: ${resolved}${unit};`;
 			}
-			return match;
-		});
-	}
-	return newContents;
+		);
+		return `:root {${updated}}`;
+	});
+	return { css, vars };
 }
 
-export function calVh(contents) {
-	let prev;
-	let newContents = contents;
-	const regex = /([dm])-vh\(([^)]+)\)/g;
-	while (prev !== newContents) {
-		prev = newContents;
-		newContents = newContents.replace(regex, (match, device, innerExpr) => {
-			const expr = innerExpr.trim();
-			if (/^[\d+\-*/().\s]+$/.test(expr)) {
-				try {
-					const evaluated = Function('"use strict";return (' + expr + ")")();
-					return device.toLowerCase() === "d"
-						? vh.d(evaluated)
-						: vh.m(evaluated);
-				} catch (err) {
-					return match;
-				}
-			}
-			return match;
-		});
-	}
-	return newContents;
-}
-
-export function resolveVars(css) {
-	return css.replace(/var\(\s*(--[^)]+)\s*\)/g, (match, name) => {
-		const key = name.trim();
-		if (vars[key] !== undefined) return vars[key];
-		return match;
+/**
+ * Replace CSS variable references within :root using resolved values.
+ * Example: "var(--vw)" → ".052083vw"
+ */
+function replaceRootVars(css, vars) {
+	return css.replace(/:root\s*{([^}]+)}/, (match, content) => {
+		const updated = content.replace(
+			/var\((--[\w-]+)\)/g,
+			(_, varName) => vars[varName] || `var(${varName})`
+		);
+		return `:root {${updated}}`;
 	});
 }
 
-export function extractRoot(css, exclude = []) {
-	const rootRegex = /:root\s*{([\s\S]*?)}/;
-	const match = css.match(rootRegex);
-	if (!match) return css;
-	const rootContent = match[1];
-	const lines = rootContent.split(";");
-	vars = {};
-	for (const line of lines) {
-		const trimmed = line.trim();
-		if (!trimmed) continue;
-		const parts = trimmed.split(":");
-		if (parts.length < 2) continue;
-		const varName = parts[0].trim();
-		const value = parts.slice(1).join(":").trim();
-		vars[varName] = value;
-	}
-	const newCss = css.replace(rootRegex, "").trim();
-	return newCss;
-}
-
-// Async helper that replaces matches using an asynchronous replacement function.
-async function asyncReplace(str, regex, asyncFn) {
-	let result = "";
-	let lastIndex = 0;
-	let match;
-	while ((match = regex.exec(str)) !== null) {
-		result += str.slice(lastIndex, match.index);
-		const replacement = await asyncFn(...match);
-		result += replacement;
-		lastIndex = match.index + match[0].length;
-	}
-	result += str.slice(lastIndex);
-	return result;
-}
-
-// Asynchronously resolve calc() expressions.
-export async function resolveCalc(css) {
-	const regex = /calc\(([^()]+)\)/g;
-	return await asyncReplace(css, regex, async (match, innerExpr) => {
-		const processed = innerExpr.trim();
-		if (/(?:[dm]-(?:vw|vh)\s*\()/.test(processed)) return match;
-
-		if (/^[\d+\-*/().\s]+$/.test(processed)) {
-			try {
-				const evaluated = await Promise.resolve(
-					Function('"use strict";return (' + processed + ")")()
-				);
-				const unitMatch = processed.match(/([a-zA-Z%]+)\s*$/);
-				const unit = unitMatch ? unitMatch[1] : "";
-				return evaluated + unit;
-			} catch (err) {
-				return match;
-			}
+/**
+ * Resolve simple multiplication expressions with numeric values.
+ * Example: "--m: calc(40 * .052083vw);" → "--m: 2.08332vw;"
+ */
+function resolveSimpleMultiplications(css) {
+	return css.replace(
+		/calc\(\s*([\d.]+)\s*\*\s*([\d.]+)(vw|vh|px|rem|em|%)\s*\)/g,
+		(_, num1, num2, unit) => {
+			const result = (parseFloat(num1) * parseFloat(num2)).toFixed(6);
+			return `${result}${unit}`;
 		}
-		return `calc(${processed})`;
+	);
+}
+
+/**
+ * Extract resolved variables from :root.
+ * Returns an object with key-value pairs of variables.
+ */
+function extractRootVariables(css) {
+	const vars = {};
+	const rootMatch = css.match(/:root\s*{([^}]+)}/);
+
+	if (!rootMatch) return vars;
+
+	rootMatch[1].replace(/--([\w-]+):\s*([^;]+);/g, (_, name, value) => {
+		vars[`--${name}`] = value.trim();
 	});
+
+	return vars;
+}
+
+/**
+ * Replace all occurrences of var(--variable) in CSS using extracted variables.
+ */
+function replaceCssVariables(css, vars) {
+	return css.replace(/var\((--[\w-]+)\)/g, (_, varName) => {
+		return vars[varName] || `var(${varName})`;
+	});
+}
+
+/**
+ * Resolve nested calc expressions that contain arithmetic operations.
+ * Clearly handles multiple nested calc() and arithmetic.
+ */
+function resolveNestedCalcs(css) {
+	return css.replace(/calc\(([^()]+)\)/g, (match, expression) => {
+		try {
+			// Remove potential CSS units (vw,vh,px,rem,etc.) to compute safely
+			const unitMatch = expression.match(/(vw|vh|px|rem|em|%)/);
+			const unit = unitMatch ? unitMatch[1] : "";
+
+			// Replace multiple spaces for clean eval
+			const cleanExpression = expression
+				.replace(/(vw|vh|px|rem|em|%)/g, "")
+				.replace(/\s+/g, " ")
+				.trim();
+
+			const result = Function(`return ${cleanExpression}`)();
+
+			const roundedResult = parseFloat(result.toFixed(6));
+
+			return `${roundedResult}${unit}`;
+		} catch {
+			// Return original if unable to resolve
+			return match;
+		}
+	});
+}
+
+/**
+ * Clear and explicit CSS pipeline that resolves CSS calculations
+ * with scoped contexts clearly handling variable inheritance.
+ */
+export function processCssWithScopedContext(cssContent, globalVars = {}) {
+	const { css: step1Css, vars: rootVars } =
+		resolveRootNumericDivisions(cssContent);
+	const scopedVars = { ...globalVars, ...rootVars };
+
+	let processedCss = replaceRootVars(step1Css, scopedVars);
+	processedCss = resolveSimpleMultiplications(processedCss);
+
+	const extractedVars = extractRootVariables(processedCss);
+	const allVars = { ...scopedVars, ...extractedVars };
+
+	processedCss = replaceCssVariables(processedCss, allVars);
+	processedCss = resolveNestedCalcs(processedCss);
+
+	processedCss = removeRootSelector(processedCss);
+
+	return { processedCss, extractedVars: allVars };
+}
+
+/**
+ * Remove :root selector from CSS after processing is complete.
+ */
+function removeRootSelector(css) {
+	return css.replace(/:root\s*{[\s\S]*?}\s*/g, "").trim();
 }

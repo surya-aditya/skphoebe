@@ -28,7 +28,7 @@ export default class RouterBuilder {
 	}
 
 	async fetchCollection() {
-		const collectionList = ["projects"];
+		const collectionList = ["works"];
 		await Promise.all(
 			collectionList.map(async (col) => {
 				this.collection[col] = await getAllByType(col);
@@ -37,7 +37,7 @@ export default class RouterBuilder {
 	}
 
 	async fetchRouteData() {
-		// await this.fetchCollection();
+		await this.fetchCollection();
 
 		const processedRoutes = await this.manager.preProcessRoutes(this._routes);
 

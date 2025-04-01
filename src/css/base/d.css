@@ -1,16 +1,38 @@
 body {
-	position: relative;
 	background-color: var(--bg);
+	color: var(--tx);
+}
+
+canvas,
+#_,
+.p,
+.p_ {
+	position: absolute;
+}
+
+canvas,
+#_,
+.p,
+.p_ {
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+
+canvas {
+	pointer-events: none;
 }
 
 #_ {
-	position: relative;
-	left: d-vw(var(--g));
+	position: absolute;
+	top: 0;
+
+	left: var(--m);
 
 	color: var(--tx);
-	width: calc(var(--c) * 12 + d-vw(var(--g) * 11));
-	padding-top: var(--c);
-	padding-bottom: var(--c);
+	width: calc(100vw - (var(--m) * 2));
+	height: 100%;
 
 	box-sizing: border-box;
 }

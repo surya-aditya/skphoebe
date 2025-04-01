@@ -1,5 +1,5 @@
-// import Grid from "./Grid"
-// new Grid({ _cta: false, _col: 15 })
+import Grid from "./Grid";
+new Grid([12, true]);
 
 import Engine from "./_d/Engine";
 import Intro from "./_d/Intro";

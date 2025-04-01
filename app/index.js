@@ -85,7 +85,8 @@ async function startServer() {
 
 			if (req.method === "GET" && !url.pathname.match(/\.[0-9a-z]+$/i)) {
 				if (device) {
-					const routerBuilder = new RouterBuilder(router._, device);
+					const shared = await router.getSharedItems();
+					const routerBuilder = new RouterBuilder(router._, device, shared);
 					const routes = await routerBuilder.init();
 
 					let data = {};
