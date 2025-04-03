@@ -2,10 +2,10 @@
 	position: relative;
 
 	& span::before {
-		content: "[ ";
+		content: "[\00a0\00a0";
 	}
 
 	& span::after {
-		content: " ]";
+		content: "\00a0\00a0]";
 	}
 }

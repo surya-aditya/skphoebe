@@ -27,6 +27,8 @@
 
 .wo-he-la {
 	align-self: flex-start;
+	display: flex;
+	justify-content: space-between;
 
 	font-family: "IBM Plex Sans", sans-serif;
 	font-size: calc(18 * var(--vw));
@@ -34,6 +36,12 @@
 	line-height: 1;
 
 	color: var(--c);
+}
+
+.wo-he-la .wo-cl {
+	font-size: calc(20 * var(--vw));
+	letter-spacing: calc(20 * 4 / 100 * var(--vw));
+	font-weight: 600;
 }
 
 .wo-he-de {
@@ -114,10 +122,123 @@
 	}
 
 	&:not(:last-child) {
-		margin-bottom: calc(100 * var(--vw));
+		margin-bottom: calc(47.34 * var(--vw));
 	}
 
 	&:last-child {
-		margin-bottom: calc(160 * var(--vw));
+		margin-bottom: calc(80 * var(--vw));
+	}
+}
+
+.wo-f {
+	position: relative;
+	width: 100%;
+	height: 100vh;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+
+	padding-top: calc(112.66 * var(--vw));
+	padding-bottom: calc(112.66 * var(--vw));
+
+	box-sizing: border-box;
+}
+
+.wo-f-la {
+	text-align: center;
+	font-size: calc(56 * var(--vw));
+	line-height: 1;
+	font-weight: 600;
+
+	padding-bottom: calc(30 * var(--vw));
+}
+
+.wo-f-sc {
+	text-align: center;
+
+	font-family: "IBM Plex Serif", serif;
+	font-size: calc(22 * var(--vw));
+	line-height: 1;
+	letter-spacing: calc(22 * 4 / 100 * var(--vw));
+
+	color: var(--ac);
+}
+
+.wo-f-r {
+	position: relative;
+
+	display: flex;
+	justify-content: center;
+
+	padding-top: calc(90 * var(--vw));
+	padding-bottom: calc(30 * var(--vw));
+
+	box-sizing: border-box;
+
+	& ._me {
+		aspect-ratio: 0.838;
+		background-color: var(--ac);
+	}
+}
+
+.wo-f-de {
+	position: relative;
+}
+
+.wo-f-de-ti {
+	font-size: calc(24 * var(--vw));
+	line-height: 1;
+	font-weight: 600;
+
+	text-align: center;
+}
+
+.wo-f-de-se {
+	font-size: calc(16 * var(--vw));
+	line-height: 1;
+	letter-spacing: calc(16 * 4 / 100 * var(--vw));
+
+	color: var(--ac);
+	text-align: center;
+
+	margin-top: calc(15 * var(--vw));
+
+	& span:not(:last-child)::after {
+		content: "";
+		display: inline-block;
+		position: relative;
+		aspect-ratio: 1;
+
+		border-radius: 100%;
+
+		background-color: var(--ac);
+
+		user-select: none;
+		pointer-events: none;
+	}
+}
+
+@media (max-aspect-ratio: 1.778) {
+	.wo-f-r ._me {
+		height: calc(517 * var(--vw));
+	}
+
+	.wo-f-de-se span:not(:last-child)::after {
+		top: calc(-0.5 * var(--vw));
+		width: calc(6 * var(--vw));
+		margin: 0 calc(20 * var(--vw));
+	}
+}
+
+@media (min-aspect-ratio: 1.778) {
+	.wo-f-r ._me {
+		height: calc(517 * var(--vh));
+	}
+
+	.wo-f-de-se span:not(:last-child)::after {
+		top: calc(-0.5 * var(--vh));
+		width: calc(6 * var(--vh));
+		margin: 0 calc(20 * var(--vh));
 	}
 }

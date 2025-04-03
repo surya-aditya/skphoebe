@@ -83,18 +83,6 @@ html {
 	user-select: none;
 }
 
-::-moz-selection {
-	color: #ecebeb;
-	background: #161310;
-	text-shadow: none;
-}
-
-::selection {
-	color: #ecebeb;
-	background: #161310;
-	text-shadow: none;
-}
-
 body {
 	font-family: "IBM Plex Sans", sans-serif;
 	font-weight: 400;

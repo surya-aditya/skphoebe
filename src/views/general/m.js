@@ -1,5 +1,6 @@
 import { autoTypographicQuotes } from "../../../app/utils/compiler";
 import { fooMobile as Footer } from "../partials/foo";
+import { headerMobile } from "../partials/nav";
 
 export const template = (data) => {
 	const social = data.shared.social;
@@ -69,6 +70,7 @@ export const template = (data) => {
 	return html`
 		<div class="p_">
 			<div class="p">
+				<header>${headerMobile()}</header>
 				<section id="ge-pr">
 					<h1 class="t-br">
 						<span>Profile</span>

@@ -1,3 +1,20 @@
+::-moz-selection {
+	color: var(--bg);
+	background: var(--tx);
+	text-shadow: none;
+}
+
+::selection {
+	color: var(--bg);
+	background: var(--tx);
+	text-shadow: none;
+}
+
+body {
+	background-color: var(--bg);
+	color: var(--tx);
+}
+
 body {
 	position: relative;
 	background: var(--bg);
@@ -28,4 +45,8 @@ body > ._ {
 
 .r-o.on {
 	opacity: 1;
+}
+
+._s-l path {
+	fill: var(--tx);
 }

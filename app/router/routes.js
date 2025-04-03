@@ -112,6 +112,21 @@ export const routes = [
 		prismicType: "works",
 		template: "work",
 		preprocess: async ({ uid, data }, collection) => {
+			const works = collection.works;
+
+			const index = works.findIndex((w) => w.uid === uid);
+
+			if (index !== -1) {
+				const nextIndex = (index + 1) % works.length;
+				const next = works[nextIndex];
+
+				data.nextProject = {
+					title: next.data.title,
+					image: next.data.image,
+					services: next.data.services,
+				};
+			}
+
 			return data;
 		},
 	},

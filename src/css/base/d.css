@@ -1,3 +1,15 @@
+::-moz-selection {
+	color: var(--bg);
+	background: var(--tx);
+	text-shadow: none;
+}
+
+::selection {
+	color: var(--bg);
+	background: var(--tx);
+	text-shadow: none;
+}
+
 body {
 	background-color: var(--bg);
 	color: var(--tx);

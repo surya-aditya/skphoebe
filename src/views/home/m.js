@@ -1,4 +1,5 @@
 import { fooMobile as Footer } from "../partials/foo";
+import { headerMobile } from "../partials/nav";
 import { linkSvg } from "../partials/svg";
 
 export const template = (data) => {
@@ -60,6 +61,7 @@ export const template = (data) => {
 	return html`
 		<div class="p_">
 			<div class="p">
+				<header>${headerMobile()}</header>
 				<div id="ho-wo_">${workList}</div>
 				${footer}
 			</div>

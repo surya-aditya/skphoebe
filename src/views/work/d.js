@@ -1,6 +1,13 @@
 import { linkSvg } from "../partials/svg";
 
 export const template = (data) => {
+	const nextProject = data.nextProject;
+
+	const nextServicesDivs = nextProject.services
+		.split(",")
+		.map((service) => `<span>${service.trim()}</span>`)
+		.join("");
+
 	const gallery = data.gallery;
 	let galleryList = "";
 
@@ -25,6 +32,10 @@ export const template = (data) => {
 							<span class="t-br">
 								<span>Works</span>
 							</span>
+
+							<a href="/" class="wo-cl t-br">
+								<span>Close</span>
+							</a>
 						</div>
 						<div class="wo-he-de">
 							<span>${data.pre_title}</span>
@@ -43,6 +54,19 @@ export const template = (data) => {
 					</div>
 				</header>
 				${galleryList}
+				<footer class="wo-f">
+					<div class="wo-f-la"><span>Next Project</span></div>
+					<div class="wo-f-sc">Scroll Down</div>
+					<div class="wo-f-r">
+						<div class="_me"></div>
+					</div>
+					<div class="wo-f-de">
+						<div class="wo-f-de-ti">
+							<span>${nextProject.title}</span>
+						</div>
+						<div class="wo-f-de-se">${nextServicesDivs}</div>
+					</div>
+				</footer>
 			</div>
 		</div>
 	`;
