@@ -13,8 +13,8 @@
 .f-ho {
 	position: absolute;
 	bottom: var(--m);
-	left: var(--m);
-	right: var(--m);
+	left: 0;
+	right: 0;
 
 	padding-bottom: 0;
 }

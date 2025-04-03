@@ -1,4 +1,4 @@
-.ho-wo_ {
+#ho-wo_ {
 	position: relative;
 	width: 100%;
 	height: 100%;
@@ -24,6 +24,10 @@
 	display: flex;
 
 	line-height: 1;
+
+	& h3 {
+		font-family: "IBM Plex Serif", serif;
+	}
 }
 
 .ho-wo > div:last-child h3:not(:last-child)::after {
@@ -41,7 +45,7 @@
 }
 
 @media (min-aspect-ratio: 1.778) {
-	.ho-wo_ {
+	#ho-wo_ {
 		column-gap: calc(90 * var(--vh));
 	}
 
@@ -68,7 +72,7 @@
 }
 
 @media (max-aspect-ratio: 1.778) {
-	.ho-wo_ {
+	#ho-wo_ {
 		column-gap: calc(90 * var(--vw));
 	}
 

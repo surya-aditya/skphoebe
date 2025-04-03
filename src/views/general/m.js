@@ -1,5 +1,5 @@
 import { autoTypographicQuotes } from "../../../app/utils/compiler";
-import { logoSvg } from "../partials/svg";
+import { fooMobile as Footer } from "../partials/foo";
 
 export const template = (data) => {
 	const social = data.shared.social;
@@ -64,40 +64,26 @@ export const template = (data) => {
 		`;
 	}
 
+	const footer = Footer(data.shared, data.copyright, true);
+
 	return html`
 		<div class="p_">
 			<div class="p">
 				<section id="ge-pr">
-					<h1>
+					<h1 class="t-br">
 						<span>Profile</span>
 					</h1>
 					<p>${data.about}</p>
 				</section>
 				<section id="ge-re">
-					<span>
+					<span class="t-br">
 						<span>Recognitions</span>
 					</span>
 					<ul>
 						${allRecognitionList}
 					</ul>
 				</section>
-				<footer class="f _ns">
-					<div>${logoSvg()}</div>
-					<div>
-						<div class="f-cpr">${data.copyright}</div>
-						<div class="f-con">
-							<a href="mailto:${data.shared.email}" class="f-ma">
-								E. ${data.shared.email}
-							</a>
-							<ul>
-								${socialMedia}
-							</ul>
-						</div>
-						<a href="https://surya-aditya.com" target="_blank" rel="noopener">
-							Development by Surya Aditya
-						</a>
-					</div>
-				</footer>
+				${footer}
 			</div>
 		</div>
 	`;

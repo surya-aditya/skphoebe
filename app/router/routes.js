@@ -42,6 +42,7 @@ export const routes = [
 					uid: work.uid,
 					title: _.data.title,
 					services: _.data.services,
+					image: _.data.image,
 				};
 			});
 
@@ -51,13 +52,11 @@ export const routes = [
 	{
 		id: "ge",
 		type: "static",
-		title: webName,
+		title: "General - " + webName,
 		path: "/general",
 		prismicType: "general",
 		template: "general",
 		preprocess: async ({ data }, collection, shared) => {
-			const { works } = collection;
-
 			data.copyright = copyright;
 
 			data.shared = {};
@@ -85,9 +84,22 @@ export const routes = [
 					};
 				});
 
-			// for (let i = 0; i < data.recognitions.length; i++) {
-			// 	console.log(data.recognitions[i]);
-			// }
+			return data;
+		},
+	},
+	{
+		id: "pl",
+		type: "static",
+		title: "Playground - " + webName,
+		path: "/playground",
+		prismicType: "playground",
+		template: "playground",
+		preprocess: async ({ uid, data }, collection, shared) => {
+			data.copyright = copyright;
+
+			data.shared = {};
+			data.shared.email = shared.email;
+			data.shared.social = shared.social_media;
 
 			return data;
 		},
@@ -96,9 +108,9 @@ export const routes = [
 		id: "wo",
 		type: "dynamic",
 		title: [":uid", " — " + webName],
-		path: "/work",
+		path: "/work/:uid",
 		prismicType: "works",
-		template: "works",
+		template: "work",
 		preprocess: async ({ uid, data }, collection) => {
 			return data;
 		},

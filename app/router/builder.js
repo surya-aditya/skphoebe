@@ -71,8 +71,7 @@ export default class RouterBuilder {
 						}
 					}
 
-					// if (Object.keys(data).length) {
-					if (data) {
+					if (Object.keys(data).length) {
 						const html = await this.compileTemplate(
 							template,
 							this.device,

@@ -1,0 +1,54 @@
+.pl-li_ {
+	position: relative;
+	display: flex;
+	flex-wrap: wrap;
+	column-gap: var(--m);
+	row-gap: calc(80 * var(--vw));
+
+	padding: calc(260 * var(--vw)) 0 calc(80 * var(--vw));
+}
+
+.pl-li {
+	&:nth-child(17n + 3),
+	&:nth-child(17n + 10),
+	&:nth-child(17n + 16) {
+		margin-left: calc(315 * var(--vw));
+	}
+
+	&:nth-child(17n + 5),
+	&:nth-child(17n + 15) {
+		margin-left: calc(391 * var(--vw));
+	}
+
+	&:nth-child(17n + 7),
+	&:nth-child(17n + 13) {
+		margin-left: calc(315 * var(--vw));
+	}
+
+	& ._me {
+		display: block;
+		width: calc(351.25 * var(--vw));
+		aspect-ratio: 0.838;
+
+		background-color: var(--ac);
+	}
+
+	& h2 {
+		padding-top: calc(20 * var(--vw));
+
+		font-size: calc(22 * var(--vw));
+		line-height: 1;
+		font-weight: 600;
+	}
+
+	& span {
+		display: block;
+		padding-top: calc(10 * var(--vw));
+
+		font-family: "IBM Plex Serif", serif;
+		font-size: calc(18 * var(--vw));
+		line-height: 1;
+		letter-spacing: calc(18 * 4 / 100 * var(--vw));
+		color: var(--ac);
+	}
+}

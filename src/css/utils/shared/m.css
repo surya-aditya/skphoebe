@@ -1,0 +1,11 @@
+.t-br {
+	position: relative;
+
+	& span::before {
+		content: "[ ";
+	}
+
+	& span::after {
+		content: " ]";
+	}
+}

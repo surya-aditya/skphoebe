@@ -1,36 +1,25 @@
 import { fooMobile as Footer } from "../partials/foo";
-import { linkSvg } from "../partials/svg";
 
 export const template = (data) => {
-	const works = data.works;
-	let workList = "";
+	const list = data.list;
+	let playgroundList = "";
 
-	for (let i = 0; i < works.length; i++) {
-		const work = works[i];
+	for (let i = 0; i < list.length; i++) {
+		const item = list[i];
+		const isFull = item.full_size_on_mobile ?? false;
 
-		const servicesDivs = work.services
-			.split(",")
-			.map((service) => `<h3>${service.trim()}</h3>`)
-			.join("");
-
-		workList += html`
-			<div class="ho-wo">
+		playgroundList += html`
+			<div class="pl-li${isFull ? " pl-li-f" : ""}">
 				<picture>
 					<img
 						class="r r-o"
-						data-src="${work.image.url}"
+						data-src="${item.thumbnail.url}"
 						src="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-						alt="Thumbnail - ${work.title}"
+						alt="Thumbnail - ${item.title}"
 					/>
 				</picture>
-				<a href="/work/${work.uid}">
-					<h2>${work.title}</h2>
-					<div>${servicesDivs}</div>
-					<div>
-						${linkSvg()}
-						<span>View Details</span>
-					</div>
-				</a>
+				<h2>${item.title}</h2>
+				<span>${item.description}</span>
 			</div>
 		`;
 	}
@@ -55,12 +44,12 @@ export const template = (data) => {
 		`;
 	}
 
-	const footer = Footer(data.shared, data.copyright);
+	const footer = Footer(data.shared, data.copyright, false, "f-ho _ns");
 
 	return html`
 		<div class="p_">
 			<div class="p">
-				<div id="ho-wo_">${workList}</div>
+				<div class="pl-li_">${playgroundList}</div>
 				${footer}
 			</div>
 		</div>

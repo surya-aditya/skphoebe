@@ -33,14 +33,6 @@
 #ge-re > div {
 	font-size: calc(18 * var(--vw));
 	line-height: 1;
-
-	& span::before {
-		content: "[";
-	}
-
-	& span::after {
-		content: "]";
-	}
 }
 
 #ge-re > ul {

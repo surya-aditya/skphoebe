@@ -1,0 +1,85 @@
+#ho-wo_ {
+	position: relative;
+
+	padding: calc(152 * var(--vw)) var(--g) calc(80 * var(--vw));
+
+	box-sizing: border-box;
+}
+
+.ho-wo {
+	&:not(:last-child) {
+		padding-bottom: calc(40 * var(--vw));
+	}
+
+	& > picture {
+		background-color: var(--lazy);
+
+		width: 100%;
+		aspect-ratio: 0.795;
+	}
+
+	& > a {
+		display: block;
+		width: 100%;
+	}
+
+	& > a h2 {
+		margin-top: calc(30 * var(--vw));
+
+		font-size: calc(18 * var(--vw));
+		font-weight: 600;
+		line-height: 1;
+	}
+
+	& > a > div:nth-child(2) {
+		display: flex;
+		margin-top: calc(15 * var(--vw));
+	}
+
+	& > a h3 {
+		position: relative;
+		display: inline-block;
+
+		font-size: calc(14 * var(--vw));
+		line-height: 1;
+		letter-spacing: calc(14 * 4 / 100 * var(--vw));
+		font-family: "IBM Plex Serif", serif;
+
+		&:not(:last-child)::after {
+			content: "";
+
+			top: calc(-0.5 * var(--vw));
+			width: calc(6 * var(--vw));
+			margin: 0 var(--g);
+
+			display: inline-block;
+			position: relative;
+			aspect-ratio: 1;
+
+			border-radius: 100%;
+
+			background-color: var(--ac);
+
+			user-select: none;
+			pointer-events: none;
+		}
+	}
+
+	& > a > div:last-child {
+		display: flex;
+		align-items: center;
+		column-gap: calc(10 * var(--vw));
+
+		margin-top: calc(30 * var(--vw));
+
+		font-size: calc(14 * var(--vw));
+		line-height: 1;
+		letter-spacing: calc(14 * 4 / 100 * var(--vw));
+		font-family: "IBM Plex Serif", serif;
+	}
+
+	& > a svg {
+		width: calc(17 * var(--vw));
+		height: calc(15.21 * var(--vw));
+	}
+}

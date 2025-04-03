@@ -36,3 +36,7 @@ canvas {
 
 	box-sizing: border-box;
 }
+
+._s-l path {
+	fill: var(--tx);
+}

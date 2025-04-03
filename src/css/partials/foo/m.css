@@ -1,1 +1,64 @@
+.f {
+	position: relative;
+	width: 100%;
+	padding: 0 var(--g) calc(29.6 * var(--vw));
 
+	display: flex;
+	justify-content: space-between;
+
+	box-sizing: border-box;
+}
+
+.f > div:first-child {
+	width: var(--c);
+
+	& a > svg {
+		width: var(--c);
+	}
+
+	& a > svg path {
+		fill: var(--tx);
+	}
+}
+
+.f > div:last-child {
+	width: calc((var(--c) * 2) + (var(--g) * 2));
+
+	font-size: calc(12 * var(--vw));
+	line-height: 1;
+	letter-spacing: calc(12 * 2 / 100 * var(--vw));
+}
+
+.f-con {
+	position: relative;
+
+	& > div {
+		padding-bottom: calc(40 * var(--vw));
+	}
+
+	& > div a {
+		color: var(--tx);
+	}
+
+	& > div > span {
+		display: block;
+		padding-bottom: calc(15 * var(--vw));
+
+		color: var(--ac);
+	}
+
+	& > div > ul li {
+		display: block;
+		padding-bottom: calc(10 * var(--vw));
+	}
+}
+
+.f-cpr,
+.f > div:last-child > a:last-child {
+	display: block;
+	color: var(--ac);
+}
+
+.f > div:last-child > a:last-child {
+	padding-top: calc(10 * var(--vw));
+}

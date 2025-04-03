@@ -10,3 +10,22 @@ body > ._ {
 
 	box-sizing: border-box;
 }
+
+.r {
+	width: 100%;
+	height: 100%;
+
+	-o-object-fit: cover;
+	object-fit: cover;
+
+	transition: opacity 600ms var(--io2);
+}
+
+.r-o {
+	opacity: 0;
+	will-change: opacity;
+}
+
+.r-o.on {
+	opacity: 1;
+}

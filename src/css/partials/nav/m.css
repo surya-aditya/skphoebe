@@ -1,4 +1,53 @@
 #n {
-	position: absolute;
-	display: none;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+
+	padding: calc(30 * var(--vw)) var(--g);
+
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	column-gap: var(--g);
+
+	box-sizing: border-box;
+}
+
+#n0,
+#n2 {
+	width: var(--c);
+
+	& svg {
+		pointer-events: none;
+	}
+}
+
+#n0 {
+	aspect-ratio: 1.738;
+
+	& svg path {
+		fill: var(--tx);
+	}
+}
+
+#n2 {
+	display: flex;
+	justify-content: flex-end;
+
+	& svg {
+		width: calc(18 * var(--vw));
+		height: calc(18 * var(--vw));
+	}
+}
+
+#n1 {
+	flex-grow: 1;
+	display: flex;
+	justify-content: center;
+
+	font-size: calc(16 * var(--vw));
+	letter-spacing: calc(16 * 4 / 100 * var(--vw));
+	line-height: 1;
+	font-weight: 600;
 }

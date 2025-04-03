@@ -1,0 +1,123 @@
+.wo-he {
+	display: flex;
+}
+
+.wo-he-ba {
+	position: relative;
+	width: calc((var(--c) * 6) + (var(--g) * 5));
+	aspect-ratio: 0.838;
+	height: 100vh;
+
+	background-color: var(--tx);
+}
+
+.wo-he > div:last-child {
+	flex-grow: 1;
+	height: 100vh;
+
+	padding-left: calc(var(--c) + var(--g));
+	padding-top: calc(60 * var(--vw));
+	padding-bottom: calc(40 * var(--vw));
+
+	display: grid;
+	grid-template-columns: 1fr;
+
+	box-sizing: border-box;
+}
+
+.wo-he-la {
+	align-self: flex-start;
+
+	font-family: "IBM Plex Sans", sans-serif;
+	font-size: calc(18 * var(--vw));
+	letter-spacing: calc(18 * 4 / 100 * var(--vw));
+	line-height: 1;
+
+	color: var(--c);
+}
+
+.wo-he-de {
+	align-self: flex-start;
+	width: calc(var(--c) * 4 + (var(--g) * 3));
+
+	& > span,
+	& > p {
+		font-family: "IBM Plex Serif", serif;
+	}
+
+	& > span {
+		display: block;
+
+		font-size: calc(20 * var(--vw));
+		line-height: 1;
+		letter-spacing: calc(20 * 4 / 100 * var(--vw));
+
+		margin-bottom: calc(30 * var(--vw));
+
+		color: var(--ac);
+	}
+
+	& > h1 {
+		font-size: calc(56 * var(--vw));
+		line-height: 1;
+
+		font-weight: 500;
+
+		margin-bottom: calc(103 * var(--vw));
+	}
+
+	& > p {
+		font-size: calc(20 * var(--vw));
+		line-height: calc(36 * var(--vw));
+		letter-spacing: calc(20 * 2 / 100 * var(--vw));
+	}
+
+	& > a {
+		display: flex;
+		align-items: center;
+
+		column-gap: calc(10 * var(--vw));
+		margin-top: calc(70 * var(--vw));
+
+		font-size: calc(18 * var(--vw));
+		line-height: 1;
+		letter-spacing: calc(18 * 4 / 100 * var(--vw));
+
+		& svg {
+			width: calc(17 * var(--vw));
+			height: calc(15.21 * var(--vw));
+		}
+	}
+}
+
+.wo-he-me {
+	align-self: flex-end;
+	color: var(--ac);
+
+	font-size: calc(16 * var(--vw));
+	line-height: calc(28 * var(--vw));
+	letter-spacing: calc(16 * 4 / 100 * var(--vw));
+
+	& > span {
+		display: block;
+	}
+}
+
+.wo-r {
+	position: relative;
+	left: calc(var(--c) * 2 + (var(--g) * 2));
+	width: calc(var(--c) * 8 + (var(--g) * 7));
+	background-color: var(--tx);
+
+	&:nth-child(2) {
+		margin-top: calc(237 * var(--vw));
+	}
+
+	&:not(:last-child) {
+		margin-bottom: calc(100 * var(--vw));
+	}
+
+	&:last-child {
+		margin-bottom: calc(160 * var(--vw));
+	}
+}

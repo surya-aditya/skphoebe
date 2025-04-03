@@ -2,23 +2,16 @@ import { fooDesktop as Footer } from "../partials/foo";
 import { navDesktop } from "../partials/nav";
 
 export const template = (data) => {
-	const works = data.works;
-	let workList = "";
+	const list = data.list;
+	let playgroundList = "";
 
-	for (let i = 0; i < works.length; i++) {
-		const work = works[i];
-
-		const servicesDivs = work.services
-			.split(",")
-			.map((service) => `<h3>${service.trim()}</h3>`)
-			.join("");
-
-		workList += html`
-			<a class="ho-wo" href="/work/${work.uid}">
+	for (let i = 0; i < list.length; i++) {
+		playgroundList += html`
+			<div class="pl-li">
 				<div class="_me"></div>
-				<h2>${work.title}</h2>
-				<div>${servicesDivs}</div>
-			</a>
+				<h2>${list[i].title || ""}</h2>
+				<span>${list[i].description || ""}</span>
+			</div>
 		`;
 	}
 
@@ -42,13 +35,13 @@ export const template = (data) => {
 		`;
 	}
 
-	const footer = Footer(data.shared, data.copyright, false, "f-ho _ns");
+	const footer = Footer(data.shared, data.copyright, false);
 
 	return html`
 		<div class="p_">
 			<div class="p">
-				<header id="ho-he">${navDesktop()}</header>
-				<div id="ho-wo_">${workList}</div>
+				<header class="pl-he">${navDesktop()}</header>
+				<section class="pl-li_">${playgroundList}</section>
 				${footer}
 			</div>
 		</div>

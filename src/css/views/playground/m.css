@@ -1,0 +1,41 @@
+.pl-li_ {
+	position: relative;
+
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	column-gap: var(--g);
+	row-gap: calc(40 * var(--vw));
+
+	padding: calc(152 * var(--vw)) var(--m) calc(80 * var(--vw));
+	box-sizing: border-box;
+}
+
+.pl-li picture {
+	background-color: var(--lazy);
+}
+
+.pl-li picture img {
+	aspect-ratio: 0.838;
+}
+
+.pl-li-f {
+	grid-column: 1 / -1;
+}
+
+.pl-li > h2 {
+	font-size: calc(16 * var(--vw));
+	line-height: 1;
+	font-weight: 600;
+
+	margin-top: calc(20 * var(--vw));
+}
+
+.pl-li > span {
+	display: block;
+
+	font-family: "IBM Plex Serif", serif;
+	font-size: calc(14 * var(--vw));
+	line-height: 1;
+
+	margin-top: calc(10 * var(--vw));
+}

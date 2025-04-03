@@ -7,6 +7,8 @@
 	--tx-dark: #dedad3;
 	--ac-dark: #78746d;
 
+	--lazy: rgba(0, 0, 0, 0.1);
+
 	--vw: calc(100vw / 393);
 	--vh: calc(100vh / 856);
 
@@ -14,6 +16,7 @@
 	--g: calc(20 * var(--vw));
 	--c: calc(73 * var(--vw));
 
+	--io2: cubic-bezier(0.45, 0, 0.55, 1);
 	--o5: cubic-bezier(0.22, 1, 0.36, 1);
 	--o6: cubic-bezier(0.16, 1, 0.3, 1);
 }
