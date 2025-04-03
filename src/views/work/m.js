@@ -20,9 +20,9 @@ export const template = (data) => {
 				<picture style="aspect-ratio: ${ratio.toFixed(5)}">
 					<img
 						class="r r-o"
-						data-src="${nextProject.image.url}"
+						data-src="${image.url}"
 						src="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-						alt="Thumbnail - ${nextProject.title}"
+						alt="Gallery ${i + 1} - ${data.title}"
 					/>
 				</picture>
 			</div>
@@ -72,22 +72,24 @@ export const template = (data) => {
 				<footer class="wo-f">
 					<div class="wo-f-la"><span>Next Project</span></div>
 					<div class="wo-f-sc">Scroll Down</div>
-					<div class="wo-f-r">
-						<picture>
-							<img
-								class="r r-o"
-								data-src="${nextProject.image.url}"
-								src="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-								alt="Thumbnail - ${nextProject.title}"
-							/>
-						</picture>
-					</div>
-					<div class="wo-f-de">
-						<div class="wo-f-de-ti">
-							<span>${nextProject.title}</span>
+					<a href="/work/${nextProject.uid}">
+						<div class="wo-f-r">
+							<picture>
+								<img
+									class="r r-o"
+									data-src="${nextProject.image.url}"
+									src="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+									alt="Thumbnail - ${nextProject.title}"
+								/>
+							</picture>
 						</div>
-						<div class="wo-f-de-se">${nextServicesDivs}</div>
-					</div>
+						<div class="wo-f-de">
+							<div class="wo-f-de-ti">
+								<span>${nextProject.title}</span>
+							</div>
+							<div class="wo-f-de-se">${nextServicesDivs}</div>
+						</div>
+					</a>
 				</footer>
 			</div>
 		</div>

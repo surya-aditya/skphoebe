@@ -1,8 +1,8 @@
 #n {
 	position: absolute;
 	top: var(--m);
-	left: 0;
-	right: 0;
+	left: var(--m);
+	right: var(--m);
 
 	display: flex;
 	justify-content: space-between;
@@ -21,6 +21,19 @@
 #n1 {
 	display: flex;
 	column-gap: calc(100 * var(--vw));
+}
+
+#n2 svg > circle {
+	fill: var(--tx-light);
+}
+
+#n2 svg > path {
+	stroke: var(--tx-light);
+}
+
+#n2 svg > path,
+#n2 svg > mask {
+	fill: var(--bg-light);
 }
 
 @media (min-aspect-ratio: 1.778) {

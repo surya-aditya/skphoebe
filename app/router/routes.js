@@ -12,7 +12,7 @@ export const types = [
 
 // getYear
 export const year = new Date().getFullYear();
-const copyright = `© ${year}, All rights reserved`;
+export const copyright = `© ${year}, All rights reserved`;
 
 // StudioName
 export const webName = "Skolastika Phoebe";
@@ -121,6 +121,7 @@ export const routes = [
 				const next = works[nextIndex];
 
 				data.nextProject = {
+					uid: next.uid,
 					title: next.data.title,
 					image: next.data.image,
 					services: next.data.services,

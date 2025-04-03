@@ -40,7 +40,6 @@ export const template = (data) => {
 	return html`
 		<div class="p_">
 			<div class="p">
-				<header class="pl-he">${navDesktop()}</header>
 				<section class="pl-li_">${playgroundList}</section>
 				${footer}
 			</div>

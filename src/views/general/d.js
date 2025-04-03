@@ -48,7 +48,6 @@ export const template = (data) => {
 	return html`
 		<div class="p_">
 			<div class="p">
-				<header id="ge-he" class="_ns">${navDesktop()}</header>
 				<section id="ge-pr">
 					<h1 class="t-br">
 						<span>Profile</span>

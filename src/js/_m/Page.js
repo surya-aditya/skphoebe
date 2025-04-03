@@ -13,13 +13,22 @@ export default class Page {
 		const anim = [];
 
 		if (intro) {
+			if (is.ho || is.ge || is.pl) {
+				anim.push(_app.e.n.show());
+			}
+
 			new De((_) => {
 				_app.mutating = false;
 				_app.intro = false;
-				_e.t.aT();
 				_e.on();
 			}, delay).run();
 		} else {
+			if (is.ho || is.ge || is.pl) {
+				anim.push(_app.e.n.show());
+			} else {
+				anim.push(_app.e.n.hide());
+			}
+
 			new De((_) => {
 				_app.mutating = false;
 				_e.on();

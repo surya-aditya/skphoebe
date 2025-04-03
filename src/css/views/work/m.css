@@ -31,6 +31,8 @@
 	}
 
 	& a {
+		position: sticky;
+		top: 0;
 		flex-grow: 1;
 
 		font-size: calc(14 * var(--vw));
@@ -49,8 +51,6 @@
 }
 
 .wo-he-la {
-	padding-top: calc(30 * var(--vw));
-
 	font-size: calc(14 * var(--vw));
 	letter-spacing: calc(14 * 4 / 100 * var(--vw));
 	line-height: 1;
@@ -98,7 +98,8 @@
 		line-height: 1;
 		letter-spacing: calc(14 * 4 / 100 * var(--vw));
 
-		margin-top: calc(41.39 * var(--vw));
+		padding-top: calc(41.39 * var(--vw));
+		padding-bottom: calc(30 * var(--vw));
 	}
 
 	& a svg {
@@ -108,7 +109,7 @@
 }
 
 .wo-he-me {
-	padding-top: calc(60 * var(--vw));
+	padding-top: calc(30 * var(--vw));
 
 	& span {
 		display: block;
@@ -137,6 +138,14 @@
 	padding: calc(60 * var(--vw)) var(--m) calc(83.37 * var(--vw));
 
 	box-sizing: border-box;
+
+	& > a:last-child {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+	}
 }
 
 .wo-f-la {

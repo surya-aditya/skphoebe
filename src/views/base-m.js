@@ -1,3 +1,10 @@
+import { headerMobile } from "./partials/nav";
+
 export const template = (data) => {
-	return html` <main id="_"></main> `;
+	const header = headerMobile(data.shared, data.copyright);
+
+	return html`
+		<main id="_"></main>
+		${header}
+	`;
 };

@@ -31,7 +31,7 @@
 		line-height: 1;
 	}
 
-	& > a > div:nth-child(2) {
+	& > a > div:nth-child(3) {
 		display: flex;
 		margin-top: calc(15 * var(--vw));
 	}

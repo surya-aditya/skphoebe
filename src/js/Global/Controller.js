@@ -2,7 +2,7 @@ import Rotate from "./Rotate";
 import Window from "./Window";
 import { Router } from "./Router";
 
-import { BM, Fetch, Get, GetSe, L, PD, isUnd, rTS } from "../utils/dom";
+import { BM, Fetch, Get, L, PD, isUnd, rTS } from "../utils/dom";
 
 export default class Controller {
 	constructor(data) {
@@ -105,9 +105,8 @@ export default class Controller {
 		}
 	}
 
-	intro(callback) {
+	intro(cb) {
 		const _app = _A;
-
 		const currentUrl = _app.route.new.url;
 
 		Fetch({
@@ -129,7 +128,8 @@ export default class Controller {
 				this.add(this._, "beforeend", this.cache[url].html);
 
 				this.trM = new this.trM();
-				callback();
+
+				cb();
 			},
 		});
 	}

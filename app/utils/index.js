@@ -12,12 +12,17 @@ export function cleanUrl(url) {
 export let version = 0;
 
 export async function setVersion() {
-	version = Math.floor(Math.random() * 10);
-	return version;
+	const now = new Date();
+	const second = now.getSeconds();
+
+	return btoa(second);
 }
 
 export function getVersion() {
-	return version;
+	const now = new Date();
+	const second = now.getSeconds();
+
+	return btoa(second);
 }
 
 export function gcd(a, b) {

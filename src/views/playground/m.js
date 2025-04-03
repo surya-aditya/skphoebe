@@ -1,5 +1,4 @@
 import { fooMobile as Footer } from "../partials/foo";
-import { headerMobile } from "../partials/nav";
 
 export const template = (data) => {
 	const list = data.list;
@@ -50,7 +49,6 @@ export const template = (data) => {
 	return html`
 		<div class="p_">
 			<div class="p">
-				<header>${headerMobile()}</header>
 				<div class="pl-li_">${playgroundList}</div>
 				${footer}
 			</div>

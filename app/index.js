@@ -4,7 +4,7 @@ import RouterBuilder from "./router/builder";
 
 // App
 import { config } from "./config.js";
-import { year } from "./router/routes.js";
+import { copyright, year } from "./router/routes.js";
 
 // Utils
 import { compileCSS, compileTpl } from "./utils/compiler";
@@ -90,6 +90,9 @@ async function startServer() {
 					const routes = await routerBuilder.init();
 
 					let data = {};
+
+					data.shared = shared;
+					data.copyright = copyright;
 
 					const body = await compileTpl("base-" + device, {
 						year,

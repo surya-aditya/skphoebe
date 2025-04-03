@@ -1,5 +1,4 @@
 import { fooMobile as Footer } from "../partials/foo";
-import { headerMobile } from "../partials/nav";
 import { linkSvg } from "../partials/svg";
 
 export const template = (data) => {
@@ -8,6 +7,7 @@ export const template = (data) => {
 
 	for (let i = 0; i < works.length; i++) {
 		const work = works[i];
+		const ratio = work.image.dimensions.width / work.image.dimensions.height;
 
 		const servicesDivs = work.services
 			.split(",")
@@ -16,15 +16,16 @@ export const template = (data) => {
 
 		workList += html`
 			<div class="ho-wo">
-				<picture>
-					<img
-						class="r r-o"
-						data-src="${work.image.url}"
-						src="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
-						alt="Thumbnail - ${work.title}"
-					/>
-				</picture>
 				<a href="/work/${work.uid}">
+					<picture>
+						<img
+							class="r r-o"
+							data-src="${work.image.url}"
+							src="data:image/gif;base64,R0lGODlhAQABAHAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw=="
+							alt="Thumbnail - ${work.title}"
+							style="aspect-ratio: ${ratio.toFixed(5)}"
+						/>
+					</picture>
 					<h2>${work.title}</h2>
 					<div>${servicesDivs}</div>
 					<div>
@@ -61,7 +62,6 @@ export const template = (data) => {
 	return html`
 		<div class="p_">
 			<div class="p">
-				<header>${headerMobile()}</header>
 				<div id="ho-wo_">${workList}</div>
 				${footer}
 			</div>

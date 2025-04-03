@@ -1,6 +1,7 @@
-// import Load from "./Load";
-
-// import { Get, T, cssTr, isDef, isUnd } from "../../utils/dom";
+import { Opacity, PE } from "../../utils/dom";
+import { De } from "../../utils/math";
+import Page from "../Page";
+import FxMutation from "./Fx/FxMutation";
 
 export default class Mutation {
 	constructor() {
@@ -9,38 +10,62 @@ export default class Mutation {
 
 	out() {
 		const _app = _A;
-		const url = _app.route.new.url;
-		const _rgl = _app.rgl;
+		const _e = _app.e;
 
-		_app.e.off();
+		_e.off();
 
-		this.fx.out({ cb: () => _app.page.update() });
+		this.fromMenu = _e.n.isOpen;
+
+		if (this.fromMenu) {
+			_app.page.update();
+		} else {
+			this.fx.out({
+				d: 200,
+				e: "l",
+				cb: () => {
+					_app.page.update();
+
+					if (_app.is.ho || _app.is.ge || _app.is.pl) {
+						Opacity(_app.e.n.n, 1);
+						PE.a(_app.e.n.n);
+					} else {
+						Opacity(_app.e.n.n, 0);
+						PE.n(_app.e.n.n);
+					}
+				},
+			});
+		}
 	}
 
 	in() {
 		const _app = _A;
-		const _rgl = _app.rgl;
 		const _e = _app.e;
-		const url = _app.route.new.url;
+		const d = 300;
 
-		_app.page.insertNew();
 		_app.page.removeOld();
+		_app.page.insertNew();
 
-		// if (isDef(_app.data.gl[url]) && isUnd(_rgl._[url])) {
-		//   cssTr(Get.id("lo-pr"), 800, "0.53, 0.23, 0.25, 1")
+		scrollTo(0, 0);
 
-		//   new Load(() => {
-		//     _rgl.clear()
-		//     _rgl.init()
-		//     _e.init()
-		//     this.fx.in()
-		//   })
-		// } else {
-		//   _rgl.clear()
-		//   _e.init()
-		//   if (_app.isCo) _e.co.fx.sT()
-		//   this.fx.in()
-		// }
-		this.fx.in();
+		_e.init();
+
+		if (this.fromMenu) _e.n.fn();
+		if (!this.fromMenu) this.fx.in({ d, e: "l" });
+
+		this.cb();
+	}
+
+	cb() {
+		const _app = _A;
+		const _e = _app.e;
+		const d = 300;
+
+		new Page({ intro: false }).play();
+		new De(() => _e.r.run(), 1).run();
+
+		new De(() => {
+			_e.on();
+			_app.mutating = false;
+		}, d).run();
 	}
 }

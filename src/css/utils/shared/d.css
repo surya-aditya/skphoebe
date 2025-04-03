@@ -9,3 +9,27 @@
 		content: "\00a0\00a0]";
 	}
 }
+
+#logo {
+	position: relative;
+	pointer-events: none;
+	width: var(--c);
+}
+
+#logo-t path {
+	fill: var(--tx);
+}
+
+#logo-c {
+	position: absolute;
+	top: 0;
+
+	& > circle {
+		stroke: var(--tx);
+	}
+
+	#c1 {
+		transform: rotate(180deg);
+		transform-origin: 72%;
+	}
+}

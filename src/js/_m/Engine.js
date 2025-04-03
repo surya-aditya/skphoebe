@@ -4,6 +4,9 @@ import { BM, Get } from "../utils/dom";
 import RafRunner from "../utils/rafr";
 
 import Cursor from "./Cursor";
+import Load from "./Load";
+import Nav from "./Partials/Nav";
+import Scroll from "./Scroll";
 
 function Page$1(suffix) {
 	const elements = Get.cl("p" + (suffix || ""));
@@ -14,30 +17,53 @@ export default class Engine {
 	constructor() {
 		BM(this, ["resize", "loop"]);
 
+		this.p = Page$1;
 		this.raf = new RafRunner(this.loop);
 
-		this.p = Page$1;
+		this.s = new Scroll();
 
-		this.c = new Cursor();
+		this.r = new Load();
+
+		this.n = new Nav();
 	}
 
-	intro() {}
+	intro() {
+		this.n.intro();
+	}
 
 	init() {
+		this.s.init();
+		this.r.init();
+
+		this.n.init();
+
 		this.loop();
 	}
 
-	resize() {}
+	resize() {
+		this.s.resize();
+		this.r.resize();
+	}
 
 	run() {
 		new ROR(this.resize).on();
 		this.raf.run();
-		this.c.run();
 	}
 
-	on() {}
+	on() {
+		this.s.on();
 
-	off() {}
+		this.n.on();
+	}
 
-	loop() {}
+	off() {
+		this.s.off();
+		this.r.off();
+
+		this.n.off();
+	}
+
+	loop() {
+		this.n.loop();
+	}
 }

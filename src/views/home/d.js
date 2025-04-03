@@ -47,7 +47,6 @@ export const template = (data) => {
 	return html`
 		<div class="p_">
 			<div class="p">
-				<header id="ho-he">${navDesktop()}</header>
 				<div id="ho-wo_">${workList}</div>
 				${footer}
 			</div>

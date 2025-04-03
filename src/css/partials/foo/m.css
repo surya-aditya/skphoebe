@@ -12,8 +12,9 @@
 .f > div:first-child {
 	width: var(--c);
 
-	& a > svg {
+	& a svg {
 		width: var(--c);
+		opacity: 1 !important;
 	}
 
 	& a > svg path {
@@ -23,13 +24,16 @@
 
 .f > div:last-child {
 	width: calc((var(--c) * 2) + (var(--g) * 2));
+}
 
+.f > div:last-child,
+#n-f {
 	font-size: calc(12 * var(--vw));
-	line-height: 1;
 	letter-spacing: calc(12 * 2 / 100 * var(--vw));
 }
 
-.f-con {
+.f-con,
+#n-con {
 	position: relative;
 
 	& > div {
@@ -42,7 +46,7 @@
 
 	& > div > span {
 		display: block;
-		padding-bottom: calc(15 * var(--vw));
+		margin-bottom: calc(15 * var(--vw));
 
 		color: var(--ac);
 	}
@@ -54,11 +58,16 @@
 }
 
 .f-cpr,
-.f > div:last-child > a:last-child {
+.f > div:last-child > a:last-child,
+#n-cpr,
+#n-f > a:last-child {
+	position: relative;
 	display: block;
 	color: var(--ac);
 }
 
-.f > div:last-child > a:last-child {
+.f > div:last-child > a:last-child,
+#n-f > a:last-child {
+	position: relative;
 	padding-top: calc(10 * var(--vw));
 }

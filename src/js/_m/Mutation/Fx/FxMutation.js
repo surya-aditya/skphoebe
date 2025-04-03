@@ -1,37 +1,24 @@
-import Page from "../Page";
-
-import Motion from "../../Motion";
-
-import { Get, PE } from "../../utils/dom";
+import Motion from "../../../Motion";
+import { Get } from "../../../utils/dom";
 
 export default class FxMutation {
 	constructor() {
-		const _app = _A;
-		const t = (this.t = Get.id("lo-bg"));
-
-		const { d, e } = _app.tr.o;
-
-		this.tA = new Motion({ el: t, p: { o: [0, 1] }, d, e });
+		this.bg = Get.id("lo").children[0];
+		this.bgA = new Motion({
+			el: this.bg,
+			p: { o: [0, 1] },
+		});
 	}
 
 	out(options) {
-		PE.a(this.t);
-		this.tA.play({ cb: options.cb });
+		const { d, e, cb } = options;
+		this.bgA.play({ d, e, cb });
 	}
 
-	in() {
-		const _app = _A;
-		// const _act = _app.rgl.act
-
-		// _act.mutation()
-		new Page({ intro: false }).play();
-
-		this.tA.play({
-			reverse: true,
-			cb: () => {
-				// _act.static()
-				PE.n(this.t);
-			},
-		});
+	in(options) {
+		const { d, e } = options;
+		const reverse = true;
+		const cb = false;
+		this.bgA.play({ reverse, d, e, cb });
 	}
 }
