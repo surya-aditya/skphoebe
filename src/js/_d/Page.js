@@ -10,9 +10,6 @@ export default class Page {
 		const delay = _app.tr.o.d * 0.5;
 		const anim = [];
 
-		let d = 1500;
-		let e = "o6";
-
 		if (intro) {
 			new De(() => {
 				_e.on();

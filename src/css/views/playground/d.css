@@ -29,8 +29,6 @@
 		display: block;
 		width: calc(351.25 * var(--vw));
 		aspect-ratio: 0.838;
-
-		background-color: var(--ac);
 	}
 
 	& h2 {

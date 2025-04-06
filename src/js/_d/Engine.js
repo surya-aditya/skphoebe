@@ -1,9 +1,15 @@
 import ROR from "../Global/RORunner";
 
-import { BM, Get } from "../utils/dom";
-import RafRunner from "../utils/rafr";
-
 import Cursor from "./Cursor";
+import Scroll from "./Scroll";
+
+import General from "./Pages/General";
+import Home from "./Pages/Home";
+import Playground from "./Pages/Playground";
+
+import { BM, Get } from "../utils/dom";
+import { default as RafR } from "../utils/rafr";
+import ScrollInertia from "./Scroll/ScrollInertia";
 
 function Page$1(suffix) {
 	const elements = Get.cl("p" + (suffix || ""));
@@ -14,20 +20,48 @@ export default class Engine {
 	constructor() {
 		BM(this, ["resize", "loop"]);
 
-		this.raf = new RafRunner(this.loop);
+		_A.tr = {
+			d: 1e3,
+			o: { d: 500, e: "l" },
+			y: { d: 1500, e: "o6" },
+			i: { d: 300 },
+		};
+
+		this.raf = new RafR(this.loop);
 
 		this.p = Page$1;
 
+		this.s = new Scroll();
 		this.c = new Cursor();
+
+		this.ho = new Home();
+		this.ge = new General();
+		this.pl = new Playground();
 	}
 
-	intro() {}
+	intro() {
+		this.s.intro();
+	}
 
 	init() {
+		this.s.init();
+		this.i = new ScrollInertia();
+
+		this.ho.init();
+		this.ge.init();
+		this.pl.init();
+
 		this.loop();
 	}
 
-	resize() {}
+	resize() {
+		this.s.resize();
+		this.i.resize();
+
+		this.ho.resize();
+		this.ge.resize();
+		this.pl.resize();
+	}
 
 	run() {
 		new ROR(this.resize).on();
@@ -35,9 +69,29 @@ export default class Engine {
 		this.c.run();
 	}
 
-	on() {}
+	on() {
+		this.s.on();
 
-	off() {}
+		this.ho.on();
+		this.ge.on();
+		// this.pl.on();
+	}
 
-	loop() {}
+	off() {
+		this.s.off();
+
+		this.ho.off();
+		this.ge.off();
+		// this.pl.off();
+	}
+
+	loop() {
+		this.s.loop();
+
+		this.ho.loop();
+		this.ge.loop();
+		this.pl.loop();
+
+		if (_A.e.s.rqd) this.i.run();
+	}
 }

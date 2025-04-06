@@ -35,7 +35,7 @@ export const routes = [
 			data.shared.email = shared.email;
 			data.shared.social = shared.social_media;
 
-			data.works = works.map((work) => {
+			data.work_list = works.map((work) => {
 				const _ = works.find((w) => w.uid === work.uid);
 
 				return {

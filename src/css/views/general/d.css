@@ -2,12 +2,12 @@
 	position: relative;
 	width: 100%;
 
-	margin-top: calc(206 * var(--vw));
+	padding-top: calc(206 * var(--vw));
 }
 
 #ge-pr > h1 {
 	position: absolute;
-	top: calc(25 * var(--vw));
+	top: calc((206 + 25) * var(--vw));
 	left: 0;
 }
 
@@ -27,6 +27,13 @@
 
 #ge-re > div {
 	width: calc((var(--c) * 2) + (var(--g) * 2));
+
+	& ._me {
+		margin-top: calc(33 * var(--vw));
+
+		width: 100%;
+		aspect-ratio: 0.743;
+	}
 }
 
 #ge-pr > h1,

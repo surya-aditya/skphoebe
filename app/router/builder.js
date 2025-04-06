@@ -78,6 +78,14 @@ export default class RouterBuilder {
 							data
 						);
 
+						if (id === "ho") {
+							this.glHome(path, data);
+						} else if (id === "ge") {
+							this.glGeneral(path, data);
+						} else if (id === "pl") {
+							this.glPlayground(path, data);
+						}
+
 						this.routes[path] = id;
 						this.cache[path] = { title, html };
 					} else {
@@ -89,6 +97,87 @@ export default class RouterBuilder {
 				}
 			})
 		);
+	}
+
+	glHome(path, data) {
+		const gl = [];
+
+		for (let i = 0; i < data.work_list.length; i++) {
+			const work = data.work_list[i];
+
+			gl.push([
+				{
+					type: "img",
+					url: work.image.url,
+				},
+			]);
+		}
+
+		this.data.gl[path] = {
+			tex: {
+				delete: false,
+				preload: true,
+				store: {
+					main: [...gl],
+				},
+			},
+		};
+	}
+
+	glGeneral(path, data) {
+		const gl = [];
+
+		for (let i = 0; i < data.recognitions.length; i++) {
+			const recognition = data.recognitions[i];
+			const group = Object.values(recognition.recognition);
+
+			for (let j = 0; j < group.length; j++) {
+				const items = group[j];
+				for (let k = 0; k < items.length; k++) {
+					gl.push([
+						{
+							type: "img",
+							url: items[k].image.url,
+						},
+					]);
+				}
+			}
+		}
+
+		this.data.gl[path] = {
+			tex: {
+				delete: false,
+				preload: true,
+				store: {
+					main: [...gl],
+				},
+			},
+		};
+	}
+
+	glPlayground(path, data) {
+		const gl = [];
+
+		for (let i = 0; i < data.list.length; i++) {
+			const item = data.list[i];
+
+			gl.push([
+				{
+					type: "img",
+					url: item.thumbnail.url,
+				},
+			]);
+		}
+
+		this.data.gl[path] = {
+			tex: {
+				delete: false,
+				preload: true,
+				store: {
+					main: [...gl],
+				},
+			},
+		};
 	}
 
 	async compileTemplate(template, device, data) {

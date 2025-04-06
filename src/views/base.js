@@ -34,6 +34,12 @@ export const template = (data) => {
 			<body>
 				<div id="lo">
 					<div id="lo-bg"></div>
+					<div id="lo-pr">
+						<div></div>
+					</div>
+					<div id="lo-nu_">
+						<div id="lo-nu"></div>
+					</div>
 				</div>
 			</body>
 		</html>

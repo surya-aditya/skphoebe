@@ -3,11 +3,11 @@ import { logoSvg, modeSvg } from "./svg";
 export const navDesktop = () => {
 	return html`
 		<div id="n">
-			<div id="n0">${logoSvg()}</div>
+			<a href="/" id="n0">${logoSvg()}</a>
 			<div id="n1">
 				<a href="/" id="n1-0">Works</a>
-				<a href="/" id="n1-1">General</a>
-				<a href="/" id="n1-2">Playground</a>
+				<a href="/general" id="n1-1">General</a>
+				<a href="/playground" id="n1-2">Playground</a>
 			</div>
 			<div id="n2">
 				<span>Mode</span>

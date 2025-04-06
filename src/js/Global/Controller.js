@@ -93,7 +93,6 @@ export default class Controller {
 				PD(event);
 				if (!_app.mutating) {
 					const path = href.replace(/^.*\/\/[^/]+/, "");
-
 					if (path === _app.route.new.url) return;
 
 					_app.mutating = true;
@@ -142,9 +141,7 @@ export default class Controller {
 		_app.target = direction;
 		_app.fromBack = "back" === direction;
 
-		_app.page.update = () => {
-			this.in();
-		};
+		_app.page.update = () => this.in();
 
 		this.trM.out();
 	}

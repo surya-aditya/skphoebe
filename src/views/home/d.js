@@ -2,7 +2,7 @@ import { fooDesktop as Footer } from "../partials/foo";
 import { navDesktop } from "../partials/nav";
 
 export const template = (data) => {
-	const works = data.works;
+	const works = data.work_list;
 	let workList = "";
 
 	for (let i = 0; i < works.length; i++) {

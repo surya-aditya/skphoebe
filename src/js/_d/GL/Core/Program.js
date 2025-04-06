@@ -11,11 +11,12 @@ export default class Program {
 		this.pts = prop.pts;
 		this.name = prop.name;
 		this.fbo = isDef(prop.fbo);
+
 		this.pgm = this.crP(prop.shader);
 
 		const uniform = this.uniform;
-		uniform.umm = { type: "Matrix4fv" }; // Model matrix
-		uniform.uvm = { type: "Matrix4fv" }; // View matrix
+		uniform.umm = { t: "Matrix4fv" }; // Model matrix
+		uniform.uvm = { t: "Matrix4fv" }; // View matrix
 
 		this.getL(uniform, "Uniform");
 	}
@@ -63,9 +64,9 @@ export default class Program {
 			if (Has(this.uniform, key)) {
 				const uniform = this.uniform[key];
 				const location = uniform.location;
-				const method = `uniform${uniform.type}`;
+				const method = `uniform${uniform.t}`;
 
-				if (uniform.type.startsWith("Matrix")) {
+				if (uniform.t.startsWith("Matrix")) {
 					this.gl[method](location, false, uniform.v);
 				} else {
 					this.gl[method](location, uniform.v);

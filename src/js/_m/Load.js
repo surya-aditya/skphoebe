@@ -1,11 +1,11 @@
 import { BM, Cl, Get, isUnd, Re } from "../utils/dom";
-import RafRunner from "../utils/rafr";
+import { default as RafR } from "../utils/rafr";
 
 export default class Load {
 	constructor() {
 		BM(this, ["loop"]);
 
-		this.raf = new RafRunner(this.loop);
+		this.raf = new RafR(this.loop);
 
 		this.isOff = true;
 	}

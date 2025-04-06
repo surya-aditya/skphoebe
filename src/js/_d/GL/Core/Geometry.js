@@ -19,6 +19,7 @@ export default class Geo {
 		this.attrib = params.attrib;
 		this.type = params.type;
 		this.ren.vertexArray.bind(null);
+
 		this.pgm.getL(this.attrib, "Attrib");
 		this.modelM4 = create();
 	}
@@ -36,6 +37,7 @@ export default class Geo {
 			isIndex,
 			dataType,
 			glContext = this.gl;
+
 		for (const attribName in this.attrib) {
 			if (Has(this.attrib, attribName)) {
 				attrData = this.attrib[attribName];
@@ -145,16 +147,7 @@ export default class Geo {
 			uniform.r.v = [1, 1];
 		}
 
-		if (this.type === 2) {
-			uniform.mM.v = lerp.mM;
-			uniform.k.v = lerp.ki;
-		} else {
-			uniform.mM.v = 0;
-			uniform.k.v = 0;
-		}
-
 		uniform.t.v = this.type;
-		uniform.s.v = [lerp.w, lerp.h];
 		uniform.z.v = -50 * ease.z;
 		uniform.o.v = lerp.opacity * ease.opacity;
 		uniform.g.v = lerp.bw;

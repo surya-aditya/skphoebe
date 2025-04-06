@@ -1,6 +1,7 @@
-// import Load from "./Load";
+import Load from "../Load";
+import FxMutation from "./Fx/FxMutation";
 
-// import { Get, T, cssTr, isDef, isUnd } from "../../utils/dom";
+import { isDef, isUnd } from "../../utils/dom";
 
 export default class Mutation {
 	constructor() {
@@ -9,11 +10,8 @@ export default class Mutation {
 
 	out() {
 		const _app = _A;
-		const url = _app.route.new.url;
-		const _rgl = _app.rgl;
 
 		_app.e.off();
-
 		this.fx.out({ cb: () => _app.page.update() });
 	}
 
@@ -26,21 +24,19 @@ export default class Mutation {
 		_app.page.insertNew();
 		_app.page.removeOld();
 
-		// if (isDef(_app.data.gl[url]) && isUnd(_rgl._[url])) {
-		//   cssTr(Get.id("lo-pr"), 800, "0.53, 0.23, 0.25, 1")
+		if (isDef(_app.data.gl[url]) && isUnd(_rgl._[url])) {
+			new Load(() => {
+				_rgl.clear();
+				_rgl.init();
+				_e.init();
+				this.fx.in();
+			});
+		} else {
+			_rgl.clear();
+			_e.init();
+			this.fx.in();
+		}
 
-		//   new Load(() => {
-		//     _rgl.clear()
-		//     _rgl.init()
-		//     _e.init()
-		//     this.fx.in()
-		//   })
-		// } else {
-		//   _rgl.clear()
-		//   _e.init()
-		//   if (_app.isCo) _e.co.fx.sT()
-		//   this.fx.in()
-		// }
 		this.fx.in();
 	}
 }

@@ -10,6 +10,7 @@ import { Obfuscator } from "./plugins/Obfuscator/index.js";
 
 // Version
 import { setVersion } from "../app/utils/index.js";
+import GLSL from "./plugins/GLSL/index.js";
 
 const isProd = process.env.NODE_ENV === "production";
 
@@ -32,6 +33,7 @@ const context = {
 		Static({ src: "static", dest: "public" }),
 		Obfuscator(),
 		await Style(),
+		GLSL(),
 	],
 };
 

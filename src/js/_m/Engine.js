@@ -1,7 +1,7 @@
 import ROR from "../Global/RORunner";
 
 import { BM, Get } from "../utils/dom";
-import RafRunner from "../utils/rafr";
+import { default as RafR } from "../utils/rafr";
 
 import Cursor from "./Cursor";
 import Load from "./Load";
@@ -18,7 +18,7 @@ export default class Engine {
 		BM(this, ["resize", "loop"]);
 
 		this.p = Page$1;
-		this.raf = new RafRunner(this.loop);
+		this.raf = new RafR(this.loop);
 
 		this.s = new Scroll();
 

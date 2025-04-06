@@ -1,9 +1,10 @@
 import path from "path";
 
-import { createMangler } from "./mangler.js";
-import { minify } from "./functions.js";
+import { createMangler, minify } from "./functions.js";
 
-export default function GLSL(wordsToMangle) {
+const wordsToMangle = [];
+
+export default function GLSL() {
 	return {
 		name: "GLSL Minifier",
 		setup(build) {

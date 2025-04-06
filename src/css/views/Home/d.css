@@ -12,9 +12,9 @@
 	width: 100%;
 	aspect-ratio: 0.795;
 
-	background-color: var(--ac);
 	opacity: 0.5;
 }
+
 .ho-wo > h2 {
 	line-height: 1;
 	font-weight: 600;

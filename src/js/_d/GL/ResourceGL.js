@@ -1,4 +1,4 @@
-import ROR from "../../RORunner";
+import ROR from "../../Global/RORunner";
 
 import Active from "./Active";
 import Renderer from "./Core/Renderer";
@@ -21,6 +21,7 @@ export const Basic = {
 export default class ResourceGL {
 	constructor() {
 		this._ = {};
+
 		this.media = {};
 		this.rqd = false;
 		this.pass = 0;
@@ -50,83 +51,72 @@ export default class ResourceGL {
 			uniform: {
 				// Texture
 				texture: {
-					type: "1i",
+					t: "1i",
 					v: 0,
 				},
 
 				// Type
 				t: {
-					type: "1i",
+					t: "1i",
 					v: 0,
 				},
 
 				// Texture Size
 				s: {
-					type: "2fv",
+					t: "2fv",
 					v: [1, 1],
 				},
 
 				// Resolution
 				r: {
-					type: "2fv",
+					t: "2fv",
 					v: [1, 1],
 				},
 
 				// Opacity
 				o: {
-					type: "1f",
+					t: "1f",
 					v: 0,
 				},
 
 				// Black and white / grayscale
 				g: {
-					type: "1f",
-					v: 0,
-				},
-
-				// Kinetic
-				k: {
-					type: "1f",
-					v: 0,
-				},
-
-				mM: {
-					type: "1f",
+					t: "1f",
 					v: 0,
 				},
 
 				// Offset
 				of: {
-					type: "2fv",
+					t: "2fv",
 					v: [0, 0],
 				},
 
 				// Viewport
 				v: {
-					type: "2fv",
+					t: "2fv",
 					v: [0, 0],
 				},
 
 				z: {
-					type: "1f",
+					t: "1f",
 					v: 0,
 				},
 
 				// Masking Left-Right
 				mLR: {
-					type: "2fv",
+					t: "2fv",
 					v: [0, 0],
 				},
 
 				// Masking Top-Bottom
 				mTB: {
-					type: "2fv",
+					t: "2fv",
 					v: [0, 0],
 				},
 
 				// Masking Y Normalized
 				mY: {
-					type: "1f",
+					t: "1f",
 					v: 0,
 				},
 			},

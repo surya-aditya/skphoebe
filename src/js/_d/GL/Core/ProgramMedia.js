@@ -236,22 +236,10 @@ export default class ProgramMedia {
 
 	draw() {
 		const _app = _A;
-		const { rgl, zIndex, zIndexNumber, is, was } = _app;
+		const { rgl } = _app;
 
 		this.mediaName.forEach((media) => {
 			let planes = this.plane[media];
-
-			if ((is.ab || was.ab) && media === "number") {
-				const zMap = new Map();
-				planes.forEach((plane, i) => zMap.set(plane, zIndexNumber[i]));
-				planes = [...planes].sort((a, b) => zMap.get(a) - zMap.get(b));
-			}
-
-			if (is.p0 || was.p0) {
-				const zMap = new Map();
-				planes.forEach((plane, i) => zMap.set(plane, zIndex[i]));
-				planes = [...planes].sort((a, b) => zMap.get(a) - zMap.get(b));
-			}
 
 			planes.forEach((plane) => {
 				if (plane.visible && rgl.rqd) {

@@ -2,7 +2,7 @@ import { fooMobile as Footer } from "../partials/foo";
 import { linkSvg } from "../partials/svg";
 
 export const template = (data) => {
-	const works = data.works;
+	const works = data.work_list;
 	let workList = "";
 
 	for (let i = 0; i < works.length; i++) {
