@@ -8,7 +8,10 @@
 	aspect-ratio: 0.838;
 	height: 100vh;
 
-	background-color: var(--tx);
+	._me {
+		width: 100%;
+		height: 100%;
+	}
 }
 
 .wo-he > div:last-child {
@@ -115,18 +118,23 @@
 	position: relative;
 	left: calc(var(--c) * 2 + (var(--g) * 2));
 	width: calc(var(--c) * 8 + (var(--g) * 7));
-	background-color: var(--tx);
+
+	box-sizing: border-box;
 
 	&:nth-child(2) {
-		margin-top: calc(237 * var(--vw));
+		padding-top: calc(237 * var(--vw));
 	}
 
 	&:not(:last-child) {
-		margin-bottom: calc(47.34 * var(--vw));
+		padding-bottom: calc(47.34 * var(--vw));
 	}
 
 	&:last-child {
-		margin-bottom: calc(80 * var(--vw));
+		padding-bottom: calc(80 * var(--vw));
+	}
+
+	._me {
+		height: 100%;
 	}
 }
 

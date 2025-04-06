@@ -16,7 +16,9 @@ export const template = (data) => {
 		const ratio = image.dimensions.width / image.dimensions.height;
 
 		galleryList += html`
-			<div class="wo-r" style="aspect-ratio: ${ratio.toFixed(5)}"></div>
+			<div class="wo-r">
+				<div class="_me" style="aspect-ratio: ${ratio.toFixed(5)}"></div>
+			</div>
 		`;
 	}
 

@@ -5,7 +5,6 @@ import { Get, PE } from "../../../utils/dom";
 export default class FxMutation {
 	constructor() {
 		const t = (this.t = Get.id("lo-bg"));
-
 		const { d, e } = _A.tr.o;
 
 		this.tA = new Motion({ el: t, p: { o: [0, 1] }, d, e });

@@ -10,6 +10,7 @@ import Playground from "./Pages/Playground";
 import { BM, Get } from "../utils/dom";
 import { default as RafR } from "../utils/rafr";
 import ScrollInertia from "./Scroll/ScrollInertia";
+import Work from "./Pages/Work";
 
 function Page$1(suffix) {
 	const elements = Get.cl("p" + (suffix || ""));
@@ -37,6 +38,7 @@ export default class Engine {
 		this.ho = new Home();
 		this.ge = new General();
 		this.pl = new Playground();
+		this.wo = new Work();
 	}
 
 	intro() {
@@ -50,6 +52,7 @@ export default class Engine {
 		this.ho.init();
 		this.ge.init();
 		this.pl.init();
+		this.wo.init();
 
 		this.loop();
 	}
@@ -61,6 +64,7 @@ export default class Engine {
 		this.ho.resize();
 		this.ge.resize();
 		this.pl.resize();
+		this.wo.resize();
 	}
 
 	run() {
@@ -74,7 +78,7 @@ export default class Engine {
 
 		this.ho.on();
 		this.ge.on();
-		// this.pl.on();
+		this.wo.on();
 	}
 
 	off() {
@@ -82,7 +86,7 @@ export default class Engine {
 
 		this.ho.off();
 		this.ge.off();
-		// this.pl.off();
+		this.wo.off();
 	}
 
 	loop() {
@@ -91,6 +95,7 @@ export default class Engine {
 		this.ho.loop();
 		this.ge.loop();
 		this.pl.loop();
+		this.wo.loop();
 
 		if (_A.e.s.rqd) this.i.run();
 	}

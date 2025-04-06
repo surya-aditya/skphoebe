@@ -212,7 +212,7 @@ export default class Load {
 			if (this.isTr) {
 				let canProceed = false;
 
-				if (is.ho || is.pl) {
+				if (is.wo) {
 					canProceed = true;
 				}
 

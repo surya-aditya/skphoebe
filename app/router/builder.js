@@ -84,6 +84,8 @@ export default class RouterBuilder {
 							this.glGeneral(path, data);
 						} else if (id === "pl") {
 							this.glPlayground(path, data);
+						} else if (id === "wo") {
+							this.glWork(path, data);
 						}
 
 						this.routes[path] = id;
@@ -173,6 +175,39 @@ export default class RouterBuilder {
 			tex: {
 				delete: false,
 				preload: true,
+				store: {
+					main: [...gl],
+				},
+			},
+		};
+	}
+
+	glWork(path, data) {
+		const gl = [];
+		const mainImage = data.image;
+
+		gl.push([
+			{
+				type: "img",
+				url: mainImage.url,
+			},
+		]);
+
+		for (let i = 0; i < data.gallery.length; i++) {
+			const image = data.gallery[i].gallery_image;
+
+			gl.push([
+				{
+					type: "img",
+					url: image.url,
+				},
+			]);
+		}
+
+		this.data.gl[path] = {
+			tex: {
+				delete: true,
+				preload: false,
 				store: {
 					main: [...gl],
 				},
