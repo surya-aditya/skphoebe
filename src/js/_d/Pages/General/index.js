@@ -19,11 +19,11 @@ export default class General {
 	}
 
 	on() {
-		// if (this.rqd) this.gl.on();
+		if (this.rqd) this.gl.on();
 	}
 
 	off() {
-		// if (this.rqd) this.gl.off();
+		if (this.rqd) this.gl.off();
 	}
 
 	loop() {

@@ -1,8 +1,10 @@
+import FxPreview from "./Fx/FxPreview";
 import GLWork from "./gl";
 
 export default class Work {
 	constructor() {
 		this.gl = new GLWork();
+		this.pr = new FxPreview();
 	}
 
 	init() {
@@ -11,11 +13,15 @@ export default class Work {
 
 		if (this.rqd) {
 			this.gl.init();
+			this.pr.init();
 		}
 	}
 
 	resize() {
-		if (this.rqd) this.gl.resize();
+		if (this.rqd) {
+			this.gl.resize();
+			this.pr.resize();
+		}
 	}
 
 	on() {
@@ -27,6 +33,9 @@ export default class Work {
 	}
 
 	loop() {
-		if (this.rqd) this.gl.loop();
+		if (this.rqd) {
+			this.gl.loop();
+			this.pr.loop();
+		}
 	}
 }

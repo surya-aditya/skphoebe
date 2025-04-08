@@ -84,3 +84,7 @@
 		text-align: right;
 	}
 }
+
+.ge-li {
+	cursor: pointer;
+}

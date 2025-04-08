@@ -1,14 +1,16 @@
-import { BM, Snif, L, PD } from "../../utils/dom";
+import { BM, PD, Snif, L } from "../../utils/dom";
 
 export default class VirtualScroll_ {
 	constructor() {
-		this._ = [];
-		this.l = 0;
-		this.t = false;
-		this.ff = Snif.isFF;
-		BM(this, ["fn"]);
+		this._ = []; // Stores handlers
+		this.l = 0; // Length of handlers
+		this.t = false; // Flag to check if currently processing
+		this.ff = Snif.isFF; // Check if the browser is Firefox
+		BM(this, ["fn"]); // Bind method 'fn' to 'this'
 
+		// Listen to wheel and keydown events
 		const doc = document;
+
 		L(doc.body, "a", "wheel", this.fn);
 		L(doc, "a", "keydown", this.fn);
 	}
@@ -57,10 +59,8 @@ export default class VirtualScroll_ {
 	// Handle wheel event
 	w() {
 		const event = this.e;
-
 		const deltaY = event.wheelDeltaY;
 		const scale = this.ff && event.deltaMode === 1 ? 0.833333 : 0.555556;
-
 		this.s = -deltaY * scale;
 		this.cb("w");
 	}
@@ -68,21 +68,24 @@ export default class VirtualScroll_ {
 	// Handle keyboard event
 	k() {
 		const key = this.eK;
-		const isUpOrLeft = key === "ArrowUp" || key === "ArrowLeft";
-		const isDownOrRight = key === "ArrowDown" || key === "ArrowRight";
-		const isSpace = key === " ";
+		const arrow = "Arrow";
+		const isArrowUpLeft = key === arrow + "Up" || key === arrow + "Left";
+		const isSpace = " " === key;
 
-		if (isUpOrLeft || isDownOrRight || isSpace) {
-			let value = 100;
-
-			if (isUpOrLeft) {
-				value *= -1;
+		if (
+			isArrowUpLeft ||
+			key === arrow + "Down" ||
+			key === arrow + "Right" ||
+			isSpace
+		) {
+			let scrollAmount = 100;
+			if (isArrowUpLeft) {
+				scrollAmount *= -1;
 			} else if (isSpace) {
-				const dir = this.e.shiftKey ? -1 : 1;
-				value = (_A.win.h - 40) * dir;
+				scrollAmount = this.e.shiftKey ? -1 : 1;
+				scrollAmount *= _A.win.h - 40;
 			}
-
-			this.s = value;
+			this.s = scrollAmount;
 			this.cb("k");
 		} else {
 			this.t = false;
@@ -91,13 +94,12 @@ export default class VirtualScroll_ {
 
 	// Callback to handle the result of input
 	cb(type) {
-		let i = this.l;
+		let index = this.l;
 
-		while (i--) {
-			const listener = this._[i];
-			if (type === "w" || listener.k) {
-				listener.cb(this.s);
-			}
+		while (index--) {
+			const handler = this._[index];
+			if (type !== "w" && !handler.k) continue;
+			handler.cb(this.s);
 		}
 
 		this.t = false;

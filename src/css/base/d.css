@@ -44,11 +44,11 @@ canvas {
 	top: 0;
 	left: var(--m);
 
-	color: var(--tx);
 	width: calc(100vw - (var(--m) * 2));
 	height: 100%;
 
 	overflow: hidden;
+	color: var(--tx);
 
 	box-sizing: border-box;
 }

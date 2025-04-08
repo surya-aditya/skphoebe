@@ -15,6 +15,10 @@
 
 	--c: calc(135 * var(--vw));
 
+	--vw-p: var(--c);
+	--g-p: calc(var(--g) * 1vw);
+	--c-p: calc(var(--vw-p) / 12);
+
 	--o5: cubic-bezier(0.22, 1, 0.36, 1);
 	--o6: cubic-bezier(0.16, 1, 0.3, 1);
 }

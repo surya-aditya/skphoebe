@@ -22,7 +22,7 @@ export const template = (data) => {
 						${items
 							.map(
 								(item) =>
-									html`<li>
+									html`<li class="ge-li">
 										<span>${item.recognition_type}</span>
 										<span>${autoTypographicQuotes(item.year)}</span>
 									</li>`

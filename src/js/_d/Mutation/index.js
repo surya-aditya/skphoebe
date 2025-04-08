@@ -36,7 +36,5 @@ export default class Mutation {
 			_e.init();
 			this.fx.in();
 		}
-
-		this.fx.in();
 	}
 }

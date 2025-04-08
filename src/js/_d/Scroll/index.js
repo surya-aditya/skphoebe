@@ -2,6 +2,7 @@ import VS from "./VS";
 import PointerMove from "../Cursor/PointerMove";
 import { BM, Cl, L, PD, Re } from "../../utils/dom";
 import { Clamp, Damp, R, Une } from "../../utils/math";
+import SVTo from "./SVTo";
 
 export default class Scroll {
 	constructor() {
@@ -11,9 +12,10 @@ export default class Scroll {
 		this.isDrag = false;
 		this.prev = 0;
 
-		BM(this, ["vFn", "move", "down", "up"]);
+		BM(this, ["vFn", "sUp", "move", "down", "up"]);
 
 		this.v = new VS({ cb: this.vFn, k: true });
+		this.sVTo = new SVTo({ sUp: this.sUp });
 		this.pm = new PointerMove({ cb: this.move });
 	}
 
@@ -33,6 +35,8 @@ export default class Scroll {
 		const _app = _A;
 		this.url = _app.route.new.url;
 
+		this.sVTo.init();
+
 		this.sUpAll(0);
 		this.resize();
 	}
@@ -49,6 +53,13 @@ export default class Scroll {
 
 		if (_app.is.ho) {
 			total = 0;
+		} else if (_app.is.wo) {
+			const innerEl = page.children[0].children;
+			const innerElL = innerEl.length;
+
+			for (let i = 0; i < innerElL; i++) {
+				if (!Cl.co(innerEl[i], "_ns")) total += Re(innerEl[i]).height;
+			}
 		} else {
 			for (let i = 0; i < elL; i++) {
 				if (!Cl.co(el[i], "_ns")) total += Re(el[i]).height;
@@ -63,6 +74,7 @@ export default class Scroll {
 
 	vFn(delta) {
 		if (!this.isDown) {
+			this.sVTo.stop();
 			this.sUp(this.clamp(this._[this.url].tar + delta));
 		}
 	}
@@ -121,7 +133,7 @@ export default class Scroll {
 		if (!this.isDown) return;
 
 		this.isDown = false;
-		this.isDrag = false;
+		// this.isDrag = false;
 	}
 
 	// Periodically updates positions to create a smooth scrolling or dragging effect
@@ -166,6 +178,7 @@ export default class Scroll {
 	on() {
 		this.v.on();
 		this.pm.on();
+		this.sVTo.on();
 		this.l("a");
 	}
 
@@ -173,6 +186,7 @@ export default class Scroll {
 	off() {
 		this.v.off();
 		this.pm.off();
+		this.sVTo.off();
 		this.l("r");
 	}
 }

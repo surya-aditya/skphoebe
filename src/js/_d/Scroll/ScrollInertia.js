@@ -11,10 +11,20 @@ export default class ScrollInertia {
 
 		const children = _app.e.p().children;
 
-		for (let el of children) {
-			if (!Cl.co(el, "_ns")) {
-				this._[this._L] = { dom: el, range: {} };
-				this._L++;
+		if (_app.is.wo) {
+			const innerEl = children[0].children;
+			for (let el of innerEl) {
+				if (!Cl.co(el, "_ns")) {
+					this._[this._L] = { dom: el, range: {} };
+					this._L++;
+				}
+			}
+		} else {
+			for (let el of children) {
+				if (!Cl.co(el, "_ns")) {
+					this._[this._L] = { dom: el, range: {} };
+					this._L++;
+				}
 			}
 		}
 

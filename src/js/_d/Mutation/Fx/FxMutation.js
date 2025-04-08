@@ -1,6 +1,6 @@
 import Motion from "../../../Motion";
 import Page from "../../Page";
-import { Get, PE } from "../../../utils/dom";
+import { Get, Opacity, PE } from "../../../utils/dom";
 
 export default class FxMutation {
 	constructor() {
@@ -12,6 +12,11 @@ export default class FxMutation {
 
 	out(options) {
 		PE.a(this.t);
+
+		const nav = Get.id("n");
+		Opacity(nav, _A.is.wo ? 0 : 1);
+		PE[_A.is.wo ? "n" : "a"](nav);
+
 		this.tA.play({ cb: options.cb });
 	}
 

@@ -4,7 +4,6 @@ export default class Page {
 	constructor(data) {
 		const _app = _A;
 		const _e = _app.e;
-		const _is = _app.is;
 
 		const intro = data.intro;
 		const delay = _app.tr.o.d * 0.5;

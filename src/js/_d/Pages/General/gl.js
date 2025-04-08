@@ -1,9 +1,13 @@
 import Motion from "../../../Motion";
-import { Get, L, Re } from "../../../utils/dom";
+import { BM, Get, IndexClass, IndexList, L, Re } from "../../../utils/dom";
 import { Ease } from "../../../utils/easings";
-import { Damp, Lerp } from "../../../utils/math";
+import { Damp, Lerp, Une } from "../../../utils/math";
 
 export default class GLGeneral {
+	constructor() {
+		BM(this, ["fnOver"]);
+	}
+
 	init() {
 		const _app = _A;
 		this.url = _app.route.new.url;
@@ -13,16 +17,24 @@ export default class GLGeneral {
 		const page = (this.el = _app.e.p());
 
 		this.img = Get.cl("_me", page);
+		this.li = Get.cl("ge-li", page);
+		this.liL = this.li.length;
 
 		this.tex = textures.plane.main;
 		this.texL = textures.planeL.main;
 
+		this.index = { cur: 0, tar: -1 };
 		this.y = [];
-		this.bw = [];
+		this.o;
+		this.sliderMask = [];
 
-		this.prevCursorX = 0;
-
-		for (let i = 0; i < this.texL; i++) this.bw[i] = 0;
+		for (let i = 0; i < this.texL; i++) {
+			const active = 0 < i ? 1 : 0;
+			this.sliderMask[i] = {
+				tb: 0,
+				bt: active,
+			};
+		}
 
 		this.resize();
 	}
@@ -34,13 +46,15 @@ export default class GLGeneral {
 		const image = this.img[0];
 
 		for (let i = 0; i < this.texL; i++) {
-			const lerp = this.tex[i].move.lerp;
+			const { lerp, ease } = this.tex[i].move;
 			const rect = Re(image);
 			const posY = rect.top + currScroll;
 
 			lerp.x = rect.left;
 			lerp.w = image.offsetWidth;
 			lerp.h = image.offsetHeight;
+
+			ease.opacity = i === 0 ? 1 : 0;
 
 			this.y[i] = posY;
 		}
@@ -56,8 +70,10 @@ export default class GLGeneral {
 		const curScroll = Damp(curr, targ, 0.09);
 
 		for (let i = 0; i < this.texL; i++) {
-			let { lerp } = this.tex[i].move;
+			const { lerp, ease } = this.tex[i].move;
 			lerp.y = this.y[i] - curScroll;
+
+			ease.opacity = i === this.index.cur ? 1 : 0;
 		}
 	}
 
@@ -68,6 +84,29 @@ export default class GLGeneral {
 		return {
 			play: () => {},
 		};
+	}
+
+	fnOver(event) {
+		const index = IndexClass(event.target, "ge-li");
+		console.log(index);
+
+		if (index === this.index.tar) return;
+
+		this.index.cur = index;
+	}
+
+	l(action) {
+		for (let i = 0; i < this.li.length; i++) {
+			L(this.li[i], action, "mouseenter", this.fnOver);
+		}
+	}
+
+	on() {
+		this.l("a");
+	}
+
+	off() {
+		this.l("r");
 	}
 
 	loop() {

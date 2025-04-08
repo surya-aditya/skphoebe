@@ -204,6 +204,8 @@ export default class RouterBuilder {
 			]);
 		}
 
+		gl.push([{ type: "img", url: data.nextProject.image.url }]);
+
 		this.data.gl[path] = {
 			tex: {
 				delete: true,
