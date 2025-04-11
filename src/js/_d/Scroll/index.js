@@ -1,8 +1,9 @@
 import VS from "./VS";
 import PointerMove from "../Cursor/PointerMove";
-import { BM, Cl, L, PD, Re } from "../../utils/dom";
-import { Clamp, Damp, R, Une } from "../../utils/math";
+import { BM, Cl, Get, L, PD, Re } from "../../utils/dom";
+import { Clamp, Damp, iLerp, R, Une } from "../../utils/math";
 import SVTo from "./SVTo";
+import { Ease } from "../../utils/easings";
 
 export default class Scroll {
 	constructor() {
@@ -34,6 +35,7 @@ export default class Scroll {
 	init() {
 		const _app = _A;
 		this.url = _app.route.new.url;
+		this.isWo = _app.is.wo;
 
 		this.sVTo.init();
 
@@ -48,6 +50,8 @@ export default class Scroll {
 		const page = e.p();
 		const el = page.children;
 		const elL = el.length;
+
+		this.step = win.h * 1.5;
 
 		let total = 0;
 
@@ -67,9 +71,19 @@ export default class Scroll {
 		}
 
 		this.max = Math.max(total - h, 0);
+		this.maxStep = this.max;
+		if (_app.is.wo) this.max += this.step;
 		this.max = R(this.max);
 
 		this.sUpAll(this.clamp(this._[this.url].tar));
+	}
+
+	expand(current, stepVal) {
+		if (this.step === 0) return 0;
+		const clampedDiff = Clamp(0, this.step, current - stepVal) / this.step;
+		const interpolated = iLerp(0.15, 1, clampedDiff);
+
+		return Ease.i2(interpolated);
 	}
 
 	vFn(delta) {
@@ -145,10 +159,20 @@ export default class Scroll {
 		const needUpd = Une(curScroll, this._[url].tar, 3);
 
 		if (needUpd) {
-			this._[url].cur = Damp(this._[url].cur, this._[url].tar, 0.09);
+			const lerp = 0.09;
+			this._[url].cur = Damp(this._[url].cur, this._[url].tar, lerp);
+
+			const clampedStep = this.clampStep(this._[url].tar);
+			this._[url].step = Damp(this._[url].step, clampedStep, lerp);
+			this._[url].expand = this.expand(this._[url].cur, this._[url].step);
 		}
 
 		if (needUpd && !this.rqd) this.rqd = true;
+
+		if (this.isWo && curScroll >= this.max - 2) {
+			this.sVTo.off();
+			Get.cl("wo-f-r")[0].click();
+		}
 	}
 
 	// Updates all registered scroll positions
@@ -156,6 +180,9 @@ export default class Scroll {
 		const scroll = this._[this.url];
 		scroll.tar = value;
 		scroll.cur = value;
+		const clampedStep = this.clampStep(value);
+		scroll.step = clampedStep;
+		scroll.expand = this.expand(value, clampedStep);
 
 		this.tar = value;
 		this.tarPrev = value;
@@ -164,6 +191,10 @@ export default class Scroll {
 	// Clamps the scroll position to ensure it remains within allowable limits
 	clamp(value) {
 		return R(Clamp(this.min, this.max, value));
+	}
+
+	clampStep(value) {
+		return R(Clamp(this.min, this.maxStep, value));
 	}
 
 	// Handles event registration for pointer events

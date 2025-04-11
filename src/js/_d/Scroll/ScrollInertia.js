@@ -5,6 +5,7 @@ export default class ScrollInertia {
 	constructor() {
 		const _app = _A;
 		this.url = _app.route.new.url;
+		this.isWo = _app.is.wo;
 
 		this._ = [];
 		this._L = 0;
@@ -32,6 +33,10 @@ export default class ScrollInertia {
 	}
 
 	resize() {
+		const _app = _A;
+		// const scrollProp = this.isWo ? "step" : "cur";
+		// const curScroll = R(_app.e.s._[this.url][scrollProp]);
+
 		const winHeight = _A.win.h;
 		let totalH = 0;
 
@@ -56,7 +61,8 @@ export default class ScrollInertia {
 		const _e = _app.e;
 		const scroll = _e.s;
 
-		const curScroll = scroll._[this.url].cur;
+		const scrollProp = this.isWo ? "step" : "cur";
+		const curScroll = scroll._[this.url][scrollProp];
 
 		for (let i = 0; i < this._L; i++) {
 			const el = this._[i];

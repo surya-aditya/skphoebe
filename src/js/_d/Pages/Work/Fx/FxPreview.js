@@ -31,7 +31,7 @@ export default class FxPreview {
 			this.prArea = prHeight;
 		}
 
-		const offset = prHeight * 0.25;
+		const offset = prHeight * 0.32;
 		this.max = prHeight + offset - this.prArea;
 		this.maxPreview = this.prArea - offset - this.prI.offsetHeight;
 	}

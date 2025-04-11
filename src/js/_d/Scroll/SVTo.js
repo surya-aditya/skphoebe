@@ -7,7 +7,7 @@ export default class SVTo {
 		this.isSTo = false;
 		this.sUp = options.sUp;
 
-		BM(this, ["prFn"]);
+		BM(this, ["prFn", "fooFn"]);
 	}
 
 	init() {
@@ -21,6 +21,23 @@ export default class SVTo {
 			this.anim.pause();
 			this.isSTo = false;
 		}
+	}
+
+	fooFn() {
+		this.stop();
+
+		const _app = _A;
+		const { _, max } = _app.e.s;
+		const { cur } = R(_app.e.s._[this.url]);
+		const diff = Math.abs(max - cur);
+		const duration = diff === 0 ? 0 : Lerp(100, 500, Clamp(diff / 3000, 0, 1));
+
+		this.play({
+			start: cur,
+			end: max,
+			d: duration,
+			e: "io1",
+		});
 	}
 
 	prFn({ pageY }) {
@@ -77,6 +94,10 @@ export default class SVTo {
 	}
 
 	l(mode) {
-		if (this.isWork) L(Get.cl("wo-p-c")[0], mode, "click", this.prFn);
+		const event = "click";
+		if (this.isWork) {
+			L(Get.cl("wo-p-c")[0], mode, event, this.prFn);
+			L(Get.cl("wo-f-r")[0], mode, event, this.fooFn);
+		}
 	}
 }
