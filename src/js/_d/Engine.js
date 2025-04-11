@@ -23,7 +23,7 @@ export default class Engine {
 
 		_A.tr = {
 			d: 1e3,
-			o: { d: 500, e: "l" },
+			o: { d: 300, e: "l" },
 			y: { d: 1500, e: "o6" },
 			i: { d: 300 },
 		};

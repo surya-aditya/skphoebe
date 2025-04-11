@@ -102,7 +102,7 @@ canvas {
 #lo-pr > div {
 	width: 100%;
 	transform: translate3d(-110%, 0, 0);
-	background-color: #fff;
+	background-color: var(--tx);
 }
 
 #lo-nu {

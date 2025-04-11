@@ -5,7 +5,7 @@ import { Get, Opacity, PE } from "../../../utils/dom";
 import { De } from "../../../utils/math";
 
 export default class FxIntro {
-	constructor(cb) {
+	constructor() {
 		const page = new Page({ intro: true });
 
 		const lo = Get.id("lo");
