@@ -43,15 +43,14 @@ export default class GLWork {
 
 	resize() {
 		const _app = _A;
-		const { win } = _app;
-		const { cur, step } = _app.e.s._[this.url];
+		const { step } = _app.e.s._[this.url];
 
 		for (let i = 0; i < this.texL; i++) {
 			const image = this.img[i];
 
 			const lerp = this.tex[i].move.lerp;
 			const rect = Re(image);
-			const posY = rect.top + cur;
+			const posY = rect.top + step;
 
 			lerp.x = rect.left;
 			lerp.w = image.offsetWidth;
@@ -84,15 +83,15 @@ export default class GLWork {
 		for (let i = 0; i < this.texL; i++) {
 			let { lerp } = this.tex[i].move;
 
-			if (i === this.texL - 1) {
+			if (i < this.texL - 1) {
+				lerp.y = this.y[i] - step;
+			} else {
 				for (let j = 0; j < this.propL; j++) {
 					const prop = this.prop[j];
 
 					lerp[prop] = Lerp(this.f.cur[prop], this.f.tar[prop], expand);
 					if (prop === "y") lerp[prop] -= step;
 				}
-			} else {
-				lerp.y = this.y[i] - step;
 			}
 		}
 	}

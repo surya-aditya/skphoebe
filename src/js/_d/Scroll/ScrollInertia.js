@@ -34,10 +34,7 @@ export default class ScrollInertia {
 
 	resize() {
 		const _app = _A;
-		// const scrollProp = this.isWo ? "step" : "cur";
-		// const curScroll = R(_app.e.s._[this.url][scrollProp]);
-
-		const winHeight = _A.win.h;
+		const winHeight = _app.win.h;
 		let totalH = 0;
 
 		for (let i = 0; i < this._L; i++) {
