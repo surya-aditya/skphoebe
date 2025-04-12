@@ -70,8 +70,6 @@ export default class GLWork {
 		this.f.cur.w = footerImg.offsetWidth;
 		this.f.cur.h = footerImg.offsetHeight;
 
-		const newY = 0.5 * -(win.h + 2);
-
 		this.f.tar.x = bannRe.left;
 		this.f.tar.y = _app.e.s.maxStep - _app.win.h + banner.offsetHeight;
 		this.f.tar.w = banner.offsetWidth;

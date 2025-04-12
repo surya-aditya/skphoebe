@@ -38,11 +38,11 @@ export default class FxPreview {
 
 	loop() {
 		const _app = _A;
-		const { cur } = _app.e.s._[this.url];
-		const max = _app.e.s.max;
+		const { step } = _app.e.s._[this.url];
+		const max = _app.e.s.maxStep;
 
-		const prOffset = Remap(0, max, 0, this.max, cur);
-		const indicatorOffset = Remap(0, max, 0, this.maxPreview, cur);
+		const prOffset = Remap(0, max, 0, this.max, step);
+		const indicatorOffset = Remap(0, max, 0, this.maxPreview, step);
 
 		// Apply transforms
 		T(this.pr_, 0, -R(prOffset), "px");
