@@ -33,40 +33,36 @@ export default class Geo {
 	}
 
 	setAttrib() {
-		let attrData,
+		let attr,
 			isIndex,
 			dataType,
 			glContext = this.gl;
 
 		for (const attribName in this.attrib) {
 			if (Has(this.attrib, attribName)) {
-				attrData = this.attrib[attribName];
+				attr = this.attrib[attribName];
 				isIndex = "index" === attribName;
-				dataType = attrData.data.constructor;
-				attrData.type =
+				dataType = attr.data.constructor;
+				attr.type =
 					dataType === Float32Array
 						? glContext.FLOAT
 						: dataType === Uint16Array
 						? glContext.UNSIGNED_SHORT
 						: glContext.UNSIGNED_INT;
-				attrData.count = attrData.data.length / attrData.size;
-				attrData.tar = isIndex
+				attr.count = attr.data.length / attr.size;
+				attr.tar = isIndex
 					? glContext.ELEMENT_ARRAY_BUFFER
 					: glContext.ARRAY_BUFFER;
-				attrData.normalize = false;
-				glContext.bindBuffer(attrData.tar, glContext.createBuffer());
-				glContext.bufferData(
-					attrData.tar,
-					attrData.data,
-					glContext.STATIC_DRAW
-				);
+				attr.normalize = false;
+				glContext.bindBuffer(attr.tar, glContext.createBuffer());
+				glContext.bufferData(attr.tar, attr.data, glContext.STATIC_DRAW);
 				if (!isIndex) {
-					glContext.enableVertexAttribArray(attrData.location);
+					glContext.enableVertexAttribArray(attr.location);
 					glContext.vertexAttribPointer(
-						attrData.location,
-						attrData.size,
-						attrData.type,
-						attrData.normalize,
+						attr.location,
+						attr.size,
+						attr.type,
+						attr.normalize,
 						0,
 						0
 					);
@@ -81,14 +77,10 @@ export default class Geo {
 		const move = drawParams.move;
 		const lerp = move.lerp;
 		const ease = move.ease;
-		const viewParam = ease.view;
+		const eView = ease.view;
 
 		renderer.framebuffer(null);
-		renderer.viewport(
-			viewParam,
-			glContext.canvas.width,
-			glContext.canvas.height
-		);
+		renderer.viewport(eView, glContext.canvas.width, glContext.canvas.height);
 
 		renderer.face(this.face);
 		this.pgm.run();
@@ -96,7 +88,7 @@ export default class Geo {
 		this.modelM4 = identity(this.modelM4);
 
 		const camMatrix = renderer.cam.render({
-			x: viewParam,
+			x: eView,
 			y: 0,
 			z: 0,
 		});

@@ -33,9 +33,9 @@ export default class Engine {
 			s: { d: 1300, e: "o6" },
 		};
 
-		this.raf = new RafR(this.loop);
-
 		this.p = Page$1;
+
+		this.raf = new RafR(this.loop);
 
 		this.s = new Scroll();
 		this.c = new Cursor();

@@ -91,6 +91,7 @@ export default class Renderer {
 		}
 
 		this.dpr = Math.min(devicePixelRatio, dprMultiplier);
+
 		const width = _windowSize.w * this.dpr;
 		const height = _windowSize.h * this.dpr;
 
@@ -121,6 +122,13 @@ export default class Renderer {
 
 			if ((_act._[prop] || this.first) && isDef(objects[prop])) {
 				objects[prop].moving();
+			}
+		}
+
+		for (let i = 0; i < _act._L; i++) {
+			const prop = _act.prop[i];
+
+			if ((_act._[prop] || this.first) && isDef(objects[prop])) {
 				objects[prop].draw();
 			}
 		}

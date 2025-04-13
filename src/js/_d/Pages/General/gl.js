@@ -64,11 +64,11 @@ export default class GLGeneral {
 		const _app = _A;
 		const { cur, tar } = _app.e.s._[this.url];
 
-		const curScroll = Damp(cur, tar, 0.09);
+		const scroll = Damp(cur, tar, 0.09);
 
 		for (let i = 0; i < this.texL; i++) {
 			const { lerp, ease } = this.tex[i].move;
-			lerp.y = this.y[i] - curScroll;
+			lerp.y = this.y[i] - scroll;
 
 			ease.opacity = i === this.index.cur ? 1 : 0;
 		}

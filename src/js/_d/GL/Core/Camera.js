@@ -22,7 +22,7 @@ export default class Camera {
 		const far = 2500;
 		this.projectionM4 = perspective(
 			this.projectionM4,
-			(fov * pi) / 180,
+			(pi / 180) * fov,
 			this.aspect,
 			near,
 			far

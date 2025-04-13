@@ -24,7 +24,6 @@ export default class ResourceGL {
 
 		this.media = {};
 		this.rqd = false;
-		this.pass = 0;
 		this.mutate = false;
 
 		this.act = new Active("url");

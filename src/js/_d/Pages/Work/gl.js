@@ -77,20 +77,22 @@ export default class GLWork {
 
 	texSet() {
 		const _app = _A;
-		const { _ } = _app.e.s;
-		const { expand, step } = _[this.url];
+		const { _, clampStep } = _app.e.s;
+		const { expand, step, tar } = _[this.url];
+
+		const dampedStep = Damp(step, clampStep(tar), 0.09);
 
 		for (let i = 0; i < this.texL; i++) {
 			let { lerp } = this.tex[i].move;
 
 			if (i < this.texL - 1) {
-				lerp.y = this.y[i] - step;
+				lerp.y = this.y[i] - dampedStep;
 			} else {
 				for (let j = 0; j < this.propL; j++) {
 					const prop = this.prop[j];
 
 					lerp[prop] = Lerp(this.f.cur[prop], this.f.tar[prop], expand);
-					if (prop === "y") lerp[prop] -= step;
+					if (prop === "y") lerp[prop] -= dampedStep;
 				}
 			}
 		}

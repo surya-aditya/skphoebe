@@ -13,7 +13,7 @@ export default class Scroll {
 		this.isDrag = false;
 		this.prev = 0;
 
-		BM(this, ["vFn", "sUp", "move", "down", "up"]);
+		BM(this, ["vFn", "sUp", "move", "down", "up", "clampStep"]);
 
 		this.v = new VS({ cb: this.vFn, k: true });
 		this.sVTo = new SVTo({ sUp: this.sUp });
