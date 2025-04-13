@@ -62,12 +62,9 @@ export default class GLGeneral {
 
 	texSet() {
 		const _app = _A;
-		const scroll = _app.e.s._[this.url];
+		const { cur, tar } = _app.e.s._[this.url];
 
-		const curr = scroll.cur;
-		const targ = scroll.tar;
-
-		const curScroll = Damp(curr, targ, 0.09);
+		const curScroll = Damp(cur, tar, 0.09);
 
 		for (let i = 0; i < this.texL; i++) {
 			const { lerp, ease } = this.tex[i].move;

@@ -78,7 +78,7 @@ export default class GLWork {
 	texSet() {
 		const _app = _A;
 		const { _ } = _app.e.s;
-		const { expand, step, cur, tar } = _[this.url];
+		const { expand, step } = _[this.url];
 
 		for (let i = 0; i < this.texL; i++) {
 			let { lerp } = this.tex[i].move;
