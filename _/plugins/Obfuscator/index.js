@@ -8,7 +8,8 @@ import {
 } from "./functions";
 
 const p_ = /hPS|onPS|fromBack|trM|insertNew|removeOld/;
-const manglePropsPattern = `^(?:[$_].*|.*[$_]|${p_.source})$`;
+const gl = /sliderMask/;
+const manglePropsPattern = `^(?:[$_].*|.*[$_]|${p_.source}|${gl.source})$`;
 const props = new RegExp(manglePropsPattern);
 
 export function Obfuscator() {

@@ -5,6 +5,7 @@ export default class Page {
 		const _app = _A;
 		const _e = _app.e;
 		const _is = _app.is;
+		const _was = _app.was;
 
 		const intro = data.intro;
 		const delay = _app.t.o.d * 0.5;
@@ -26,7 +27,7 @@ export default class Page {
 			}, delay).run();
 		} else {
 			if (_is.wo) {
-				if (!was.wo) anim.push(_app.e.wo.gl.show({ d, e }));
+				if (!_was.wo) anim.push(_app.e.wo.gl.show({ d, e }));
 				anim.push(_app.e.wo.fx.show({ d, e }));
 			}
 

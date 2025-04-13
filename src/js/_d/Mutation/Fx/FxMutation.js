@@ -1,19 +1,19 @@
 import Motion from "../../../Motion";
 import Page from "../../Page";
-import { Get, Opacity, PE } from "../../../utils/dom";
+import { BM, Get, Opacity, PE } from "../../../utils/dom";
 
 export default class FxMutation {
 	constructor() {
-		this.t = Get.id("lo");
-		this.bg = Get.id("lo-bg");
 		const { d, e } = _A.t.o;
 
-		console.log(t, this.bg);
+		BM(this, ["out", "in"]);
+		this.t = Get.id("lo");
+		const bg = Get.id("lo-bg");
 
 		this.bgA = new Motion({ el: bg, p: { o: [0, 1] }, d, e });
 	}
 
-	out(opt) {
+	out(cb) {
 		const _app = _A;
 
 		PE.a(this.t);
@@ -22,7 +22,7 @@ export default class FxMutation {
 		Opacity(nav, _app.is.wo ? 0 : 1);
 		PE[_app.is.wo ? "n" : "a"](nav);
 
-		this.bgA.play({ cb: opt.cb });
+		this.bgA.play({ cb });
 	}
 
 	in() {
