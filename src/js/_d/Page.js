@@ -27,7 +27,9 @@ export default class Page {
 			}, delay).run();
 		} else {
 			if (_is.wo) {
-				if (!_was.wo) anim.push(_app.e.wo.gl.show({ d, e }));
+				if (!_was.wo) {
+					anim.push(_app.e.wo.gl.show({ d, e }));
+				}
 				anim.push(_app.e.wo.fx.show({ d, e }));
 			}
 

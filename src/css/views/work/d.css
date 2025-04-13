@@ -340,10 +340,12 @@
 
 .wo-f-la,
 .wo-p-f-la {
-	line-height: 1;
+	line-height: 1.2;
 	font-weight: 400;
 
 	color: var(--ac);
+
+	overflow: hidden;
 }
 
 .wo-f-la {
@@ -377,8 +379,9 @@
 
 .wo-f-de-ti,
 .wo-p-f-de-ti {
-	line-height: 1;
+	line-height: 1.2;
 	font-weight: 600;
+	overflow: hidden;
 }
 
 .wo-f-de-ti {
@@ -391,9 +394,11 @@
 
 .wo-f-de-se,
 .wo-p-f-de-se {
-	line-height: 1;
+	line-height: 1.2;
 
 	color: var(--ac);
+
+	overflow: hidden;
 
 	& span:not(:last-child)::after {
 		content: "";
@@ -476,12 +481,13 @@
 	}
 }
 
-.wo-f .f-y {
+.wo-f .f-y_ {
 	position: relative;
+	display: block;
 	overflow: hidden;
 }
 
-.wo-f .f-y span {
-	display: inline-block;
+.wo-f .f-y {
+	display: block;
 	will-change: transform;
 }

@@ -1,3 +1,4 @@
+import FxFooter from "./Fx/FxFooter";
 import FxPreview from "./Fx/FxPreview";
 import FxWork from "./Fx/FxWork";
 import GLWork from "./gl";
@@ -6,7 +7,8 @@ export default class Work {
 	constructor() {
 		this.gl = new GLWork();
 		this.fx = new FxWork();
-		this.pr = new FxPreview();
+		this.fxF = new FxFooter();
+		this.fxPr = new FxPreview();
 	}
 
 	init() {
@@ -14,15 +16,17 @@ export default class Work {
 		this.rqd = _app.is.wo;
 
 		if (this.rqd) {
+			this.fxF.init();
 			this.gl.init();
-			this.pr.init();
+			this.fxPr.init();
 		}
 	}
 
 	resize() {
 		if (this.rqd) {
+			this.fxF.resize();
 			this.gl.resize();
-			this.pr.resize();
+			this.fxPr.resize();
 		}
 	}
 
@@ -37,7 +41,7 @@ export default class Work {
 	loop() {
 		if (this.rqd) {
 			this.gl.loop();
-			this.pr.loop();
+			this.fxPr.loop();
 		}
 	}
 }

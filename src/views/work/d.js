@@ -93,14 +93,14 @@ export const template = (data) => {
 						</a>
 						<div>
 							<div class="wo-f-la t-br">
-								<span>Next Work</span>
+								<span class="f-y">Next Work</span>
 							</div>
 							<div class="wo-f-de">
 								<div class="wo-f-de-ti">
-									<span>${nextProject.title}</span>
+									${nextProject.title}
 								</div>
 								<div class="wo-f-de-se">
-									<div>${nextServicesDivs}</div>
+									<div class="f-y">${nextServicesDivs}</div>
 								</div>
 							</div>
 						</div>

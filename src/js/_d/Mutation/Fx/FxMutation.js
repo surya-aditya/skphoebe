@@ -42,7 +42,7 @@ export default class FxMutation {
 	}
 
 	outWo(cb) {
-		cb();
+		_A.e.wo.fxF.hide({ d: 300, de: "o1", cb });
 	}
 
 	inWo() {

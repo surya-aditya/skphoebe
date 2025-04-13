@@ -1,34 +1,42 @@
 import Motion from "../../../../Motion";
 import { Get } from "../../../../utils/dom";
+import { De } from "../../../../utils/math";
+import SL from "../../../../utils/sline";
 
 export default class FxFooter {
 	init() {
+		this.ti = Get.cl("wo-f-de-ti", _A.e.p())[0];
+		this.tiSL = new SL({ el: this.ti });
+
+		this.resize();
+	}
+
+	resize() {
+		this.tiSL.resize({
+			tag: {
+				start: `<span class="f-y_"><span class="f-y">`,
+				end: "</span></span>",
+			},
+		});
+	}
+
+	hide(opt) {
 		const page = _A.e.p();
-		this.p = Get.cl("wo-p", page)[0];
-		this.f = Get.cl("f-y", page)[0].children[0];
+		const foo = Get.cl("f-y", page);
+		const fooL = foo.length;
 
-		const p = { y: [0, -110] };
-		const d = 700;
-		const e = "i3";
-
-		this.pA = new Motion({ el: this.p, p, d, e });
-		this.fA = [];
-		for (let i = 0; i < this.f.length; i++) {
-			this.fA[i] = new Motion({ el: this.f[i], p, d, e });
+		for (let i = 0; i < fooL; i++) {
+			new Motion({
+				el: foo[i],
+				p: { y: [0, -110] },
+				d: opt.d,
+				e: opt.e,
+				de: i * 60,
+			}).play();
 		}
-	}
 
-	show() {
-		this.pA.play();
-		for (let i = 0; i < this.fA.length; i++) {
-			this.fA[i].play();
-		}
-	}
-
-	hide() {
-		this.pA.play({ reverse: true });
-		for (let i = 0; i < this.fA.length; i++) {
-			this.fA[i].play({ reverse: true });
-		}
+		new De(() => {
+			opt.cb();
+		}, (fooL - 1) * 60 + 700).run();
 	}
 }
