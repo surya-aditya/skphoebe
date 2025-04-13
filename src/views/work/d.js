@@ -88,16 +88,21 @@ export const template = (data) => {
 					</header>
 					${galleryList}
 					<footer class="wo-f">
-						<div class="wo-f-la"><span>Next Project</span></div>
-						<div class="wo-f-sc">Scroll Down</div>
 						<a href="/work/${nextProject.uid}" class="wo-f-r">
 							<div class="_me"></div>
 						</a>
-						<div class="wo-f-de">
-							<div class="wo-f-de-ti">
-								<span>${nextProject.title}</span>
+						<div>
+							<div class="wo-f-la t-br">
+								<span>Next Work</span>
 							</div>
-							<div class="wo-f-de-se">${nextServicesDivs}</div>
+							<div class="wo-f-de">
+								<div class="wo-f-de-ti">
+									<span>${nextProject.title}</span>
+								</div>
+								<div class="wo-f-de-se">
+									<div>${nextServicesDivs}</div>
+								</div>
+							</div>
 						</div>
 					</footer>
 				</div>
@@ -132,19 +137,20 @@ export const template = (data) => {
 							</header>
 							${minimapGallery}
 							<footer class="wo-p-f">
-								<div class="wo-p-f-la f-y"><span>Next Project</span></div>
-								<div class="wo-p-f-sc f-y">
-									<span>Scroll Down</span>
-								</div>
 								<div class="wo-p-f-r">
 									<img src="${nextProject.image.url + "&w=240&h=" + mHeight}" class="_me"/>
 								</div>
-								<div class="wo-p-f-de">
-									<div class="wo-p-f-de-ti f-y">
-										<span>${nextProject.title}</span>
+								<div>
+									<div class="wo-p-f-la t-br">
+										<span>Next Work</span>
 									</div>
-									<div class="wo-p-f-de-se f-y">
-										<span>${nextServicesDivs}</span>
+									<div class="wo-p-f-de">
+										<div class="wo-p-f-de-ti">
+											<span>${nextProject.title}</span>
+										</div>
+										<div class="wo-p-f-de-se">
+											<div>${nextServicesDivs}</div>
+										</div>
 									</div>
 								</div>
 							</footer>

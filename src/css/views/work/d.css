@@ -310,59 +310,50 @@
 	width: 100%;
 
 	display: flex;
-	flex-direction: column;
 	justify-content: center;
+	align-items: center;
 
 	box-sizing: border-box;
 }
 
 .wo-f {
 	height: 100vh;
+
+	column-gap: var(--g);
 	padding-top: calc(112.66 * var(--vw));
 	padding-bottom: calc(112.66 * var(--vw));
 }
 
 .wo-p-f {
+	column-gap: calc(var(--g) * 0.1);
 	height: calc(((var(--c) * 6) + (var(--g) * 5)) * 0.838 * 0.098);
 	padding-top: calc(112.66 * var(--vw) * 0.1);
 	padding-bottom: calc(112.66 * var(--vw) * 0.1);
 }
 
+.wo-f > div:last-child,
+.wo-p-f > div:last-child {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
 .wo-f-la,
 .wo-p-f-la {
-	text-align: center;
 	line-height: 1;
-	font-weight: 600;
-}
-
-.wo-f-la {
-	font-size: calc(56 * var(--vw));
-	padding-bottom: calc(30 * var(--vw));
-}
-
-.wo-p-f-la {
-	font-size: calc(56 * var(--vw) * 0.1);
-	padding-bottom: calc(30 * var(--vw) * 0.1);
-}
-
-.wo-f-sc,
-.wo-p-f-sc {
-	text-align: center;
-
-	font-family: "IBM Plex Serif", serif;
-	line-height: 1;
+	font-weight: 400;
 
 	color: var(--ac);
 }
 
-.wo-f-sc {
-	font-size: calc(22 * var(--vw));
-	letter-spacing: calc(22 * 4 / 100 * var(--vw));
+.wo-f-la {
+	font-size: calc(18 * var(--vw));
+	letter-spacing: calc(18 * 4 / 100 * var(--vw));
 }
 
-.wo-p-f-sc {
-	font-size: calc(22 * var(--vw) * 0.1);
-	letter-spacing: calc(22 * 4 / 100 * var(--vw) * 0.1);
+.wo-p-f-la {
+	font-size: calc(18 * var(--vw) * 0.1);
+	letter-spacing: calc(18 * 4 / 100 * var(--vw) * 0.1);
 }
 
 .wo-f-r,
@@ -379,20 +370,6 @@
 	}
 }
 
-.wo-f-r {
-	padding-top: calc(90 * var(--vw));
-	padding-bottom: calc(30 * var(--vw));
-}
-
-.wo-p-f-r {
-	padding-top: calc(90 * var(--vw) * 0.1);
-	padding-bottom: calc(30 * var(--vw) * 0.1);
-
-	& img {
-		width: auto;
-	}
-}
-
 .wo-f-de,
 .wo-p-f-de {
 	position: relative;
@@ -402,16 +379,14 @@
 .wo-p-f-de-ti {
 	line-height: 1;
 	font-weight: 600;
-
-	text-align: center;
 }
 
 .wo-f-de-ti {
-	font-size: calc(24 * var(--vw));
+	font-size: calc(48 * var(--vw));
 }
 
 .wo-p-f-de-ti {
-	font-size: calc(24 * var(--vw) * 0.1);
+	font-size: calc(48 * var(--vw) * 0.1);
 }
 
 .wo-f-de-se,
@@ -419,7 +394,6 @@
 	line-height: 1;
 
 	color: var(--ac);
-	text-align: center;
 
 	& span:not(:last-child)::after {
 		content: "";
@@ -440,23 +414,27 @@
 	font-size: calc(16 * var(--vw));
 	letter-spacing: calc(16 * 4 / 100 * var(--vw));
 
-	margin-top: calc(15 * var(--vw));
+	margin-top: calc(20 * var(--vw));
 }
 
 .wo-p-f-de-se {
 	font-size: calc(16 * var(--vw) * 0.1);
 	letter-spacing: calc(16 * 4 / 100 * var(--vw) * 0.1);
 
-	margin-top: calc(15 * var(--vw) * 0.1);
+	margin-top: calc(20 * var(--vw) * 0.1);
 }
 
 @media (max-aspect-ratio: 1.778) {
-	.wo-f-r ._me {
-		height: calc(517 * var(--vw));
+	.wo-f-r,
+	.wo-f > div:last-child {
+		width: calc(420 * var(--vw));
+		height: calc(536.13 * var(--vw));
 	}
 
-	.wo-p-f-r ._me {
-		height: calc(517 * var(--vw) * 0.1);
+	.wo-p-f-r,
+	.wo-p-f > div:last-child {
+		width: calc(420 * var(--vw) * 0.1);
+		height: calc(536.13 * var(--vw) * 0.1);
 	}
 
 	.wo-f-de-se span:not(:last-child)::after {
@@ -473,12 +451,16 @@
 }
 
 @media (min-aspect-ratio: 1.778) {
-	.wo-f-r ._me {
-		height: calc(517 * var(--vh));
+	.wo-f-r,
+	.wo-f > div:last-child {
+		width: calc(460 * var(--vh));
+		height: calc(536.13 * var(--vh));
 	}
 
-	.wo-p-f-r ._me {
-		height: calc(517 * var(--vh) * 0.1);
+	.wo-p-f-r,
+	.wo-p-f > div:last-child {
+		width: calc(460 * var(--vh) * 0.1);
+		height: calc(536.13 * var(--vh) * 0.1);
 	}
 
 	.wo-f-de-se span:not(:last-child)::after {
