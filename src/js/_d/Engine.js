@@ -11,6 +11,7 @@ import { BM, Get } from "../utils/dom";
 import { default as RafR } from "../utils/rafr";
 import ScrollInertia from "./Scroll/ScrollInertia";
 import Work from "./Pages/Work";
+import FxScroll from "./Scroll/FxScroll";
 
 function Page$1(suffix) {
 	const elements = Get.cl("p" + (suffix || ""));
@@ -21,11 +22,15 @@ export default class Engine {
 	constructor() {
 		BM(this, ["resize", "loop"]);
 
-		_A.tr = {
-			d: 1e3,
+		_A.t = {
+			d: 300,
 			o: { d: 300, e: "l" },
-			y: { d: 1500, e: "o6" },
 			i: { d: 300 },
+		};
+
+		_A.t.y = {
+			h: { d: 600, e: "o1" },
+			s: { d: 1300, e: "o6" },
 		};
 
 		this.raf = new RafR(this.loop);
@@ -39,6 +44,8 @@ export default class Engine {
 		this.ge = new General();
 		this.pl = new Playground();
 		this.wo = new Work();
+
+		this._s = new FxScroll();
 	}
 
 	intro() {
@@ -46,9 +53,12 @@ export default class Engine {
 	}
 
 	init() {
+		this._s.initB({ de: _A.t.d * 0.5 });
+
 		this.s.init();
 		this.i = new ScrollInertia();
 
+		this._s.initA();
 		this.ho.init();
 		this.ge.init();
 		this.pl.init();
@@ -58,9 +68,11 @@ export default class Engine {
 	}
 
 	resize() {
+		this._s.resizeB();
 		this.s.resize();
 		this.i.resize();
 
+		this._s.resizeA();
 		this.ho.resize();
 		this.ge.resize();
 		this.pl.resize();
@@ -96,6 +108,8 @@ export default class Engine {
 		this.ge.loop();
 		this.pl.loop();
 		this.wo.loop();
+
+		this._s.loop();
 
 		if (_A.e.s.rqd) this.i.run();
 	}

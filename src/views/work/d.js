@@ -49,27 +49,40 @@ export const template = (data) => {
 						</div>
 						<div>
 							<div class="wo-he-la">
-								<span class="t-br">
-									<span>Works</span>
+								<span class="t-y">
+									<span class="t-br y_">
+										<span class="y">Works</span>
+									</span>
 								</span>
-
-								<a href="/" class="wo-cl t-br">
-									<span>Close</span>
+								<a href="/" class="wo-cl t-y">
+									<span class="t-br y_">
+										<span class="y">Close</span>
+									</span>
 								</a>
 							</div>
 							<div class="wo-he-de">
-								<span>${data.pre_title}</span>
-								<h1>${data.title}</h1>
-								<p>${data.description}</p>
-								<a href="${data.website_url.url}">
-									${linkSvg()}
-									<span>Visit Website</span>
+								<span class="t-y t-s">${data.pre_title}</span>
+								<h1 class="t-y t-s">${data.title}</h1>
+								<p class="t-y t-s">${data.description}</p>
+								<a href="${data.website_url.url}" class="t-y">
+									<span class="y_">
+										<span class="y">
+											${linkSvg()}
+											<span>Visit Website</span>
+										</span>
+									</span>
 								</a>
 							</div>
-							<div class="wo-he-me">
-								<span>Year: ${data.year}</span>
-								<span>Services: ${data.services}</span>
-								<span>Industries: ${data.industries}</span>
+							<div class="wo-he-me t-y">
+								<span class="y_">
+									<span class="y">Year: ${data.year}</span>
+								</span>
+								<span class="y_">
+									<span class="y">Services: ${data.services}</span>
+								</span>
+								<span class="y_">
+									<span class="y">Industries: ${data.industries}</span>
+								</span>
 							</div>
 						</div>
 					</header>
@@ -119,16 +132,20 @@ export const template = (data) => {
 							</header>
 							${minimapGallery}
 							<footer class="wo-p-f">
-								<div class="wo-p-f-la"><span>Next Project</span></div>
-								<div class="wo-p-f-sc">Scroll Down</div>
+								<div class="wo-p-f-la f-y"><span>Next Project</span></div>
+								<div class="wo-p-f-sc f-y">
+									<span>Scroll Down</span>
+								</div>
 								<div class="wo-p-f-r">
 									<img src="${nextProject.image.url + "&w=240&h=" + mHeight}" class="_me"/>
 								</div>
 								<div class="wo-p-f-de">
-									<div class="wo-p-f-de-ti">
+									<div class="wo-p-f-de-ti f-y">
 										<span>${nextProject.title}</span>
 									</div>
-									<div class="wo-p-f-de-se">${nextServicesDivs}</div>
+									<div class="wo-p-f-de-se f-y">
+										<span>${nextServicesDivs}</span>
+									</div>
 								</div>
 							</footer>
 						</div>

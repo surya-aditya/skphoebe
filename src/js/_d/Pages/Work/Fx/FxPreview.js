@@ -1,10 +1,11 @@
 import { Get, Re, T } from "../../../../utils/dom";
-import { R, Remap } from "../../../../utils/math";
+import { Lerp, R, Remap } from "../../../../utils/math";
 
 export default class FxPreview {
 	init() {
 		this.url = _A.route.new.url;
 
+		this.pr__ = Get.cl("wo-p")[0];
 		this.pr_ = Get.cl("wo-p-c_")[0];
 		this.pr = Get.cl("wo-p-c")[0];
 		this.prI = Get.cl("wo-p-i")[0];
@@ -38,7 +39,7 @@ export default class FxPreview {
 
 	loop() {
 		const _app = _A;
-		const { step } = _app.e.s._[this.url];
+		const { step, expand } = _app.e.s._[this.url];
 		const max = _app.e.s.maxStep;
 
 		const prOffset = Remap(0, max, 0, this.max, step);
@@ -47,5 +48,9 @@ export default class FxPreview {
 		// Apply transforms
 		T(this.pr_, 0, -R(prOffset), "px");
 		T(this.prI, 0, R(indicatorOffset), "px");
+
+		const diff = this.pr__.offsetTop - _app.win.h;
+		const newY = Lerp(0, diff, expand);
+		T(this.pr__, 0, newY, "px");
 	}
 }

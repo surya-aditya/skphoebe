@@ -1,9 +1,11 @@
 import FxPreview from "./Fx/FxPreview";
+import FxWork from "./Fx/FxWork";
 import GLWork from "./gl";
 
 export default class Work {
 	constructor() {
 		this.gl = new GLWork();
+		this.fx = new FxWork();
 		this.pr = new FxPreview();
 	}
 

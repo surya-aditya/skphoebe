@@ -13,6 +13,10 @@
 	& * {
 		pointer-events: none;
 	}
+
+	& > * {
+		opacity: 0;
+	}
 }
 
 .wo-p-i {
@@ -22,7 +26,7 @@
 	width: var(--c);
 	height: calc(((var(--c) * 6) + (var(--g) * 5)) * 0.838 * 0.098);
 	border: 1px solid var(--tx);
-	opacity: 1;
+	opacity: 0;
 	will-change: opacity;
 
 	pointer-events: none;
@@ -132,21 +136,21 @@
 		display: block;
 
 		font-size: calc(20 * var(--vw));
-		line-height: 1;
+		line-height: 1.2;
 		letter-spacing: calc(20 * 4 / 100 * var(--vw));
 
-		margin-bottom: calc(30 * var(--vw));
+		margin-bottom: calc(25 * var(--vw));
 
 		color: var(--ac);
 	}
 
 	& > h1 {
 		font-size: calc(56 * var(--vw));
-		line-height: 1;
+		line-height: 1.2;
 
 		font-weight: 500;
 
-		margin-bottom: calc(103 * var(--vw));
+		margin-bottom: calc(97 * var(--vw));
 	}
 
 	& > p {
@@ -156,15 +160,18 @@
 	}
 
 	& > a {
-		display: flex;
-		align-items: center;
-
-		column-gap: calc(10 * var(--vw));
 		margin-top: calc(70 * var(--vw));
 
 		font-size: calc(18 * var(--vw));
 		line-height: 1;
 		letter-spacing: calc(18 * 4 / 100 * var(--vw));
+
+		& .y {
+			display: flex;
+			align-items: center;
+
+			column-gap: calc(10 * var(--vw));
+		}
 
 		& svg {
 			width: calc(17 * var(--vw));
@@ -485,4 +492,14 @@
 		width: calc(6 * var(--vh) * 0.1);
 		margin: 0 calc(20 * var(--vh) * 0.1);
 	}
+}
+
+.wo-f .f-y {
+	position: relative;
+	overflow: hidden;
+}
+
+.wo-f .f-y span {
+	display: inline-block;
+	will-change: transform;
 }

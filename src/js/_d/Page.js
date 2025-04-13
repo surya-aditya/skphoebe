@@ -4,18 +4,32 @@ export default class Page {
 	constructor(data) {
 		const _app = _A;
 		const _e = _app.e;
+		const _is = _app.is;
 
 		const intro = data.intro;
-		const delay = _app.tr.o.d * 0.5;
+		const delay = _app.t.o.d * 0.5;
 		const anim = [];
 
+		const d = 1600;
+		const e = "o6";
+
 		if (intro) {
+			if (_is.wo) {
+				anim.push(_app.e.wo.fx.show({ d, e }));
+				anim.push(_app.e.wo.gl.show({ d, e }));
+			}
+
 			new De(() => {
 				_e.on();
 				_app.mutating = false;
 				_app.intro = false;
 			}, delay).run();
 		} else {
+			if (_is.wo) {
+				if (!was.wo) anim.push(_app.e.wo.gl.show({ d, e }));
+				anim.push(_app.e.wo.fx.show({ d, e }));
+			}
+
 			new De(() => {
 				_e.on();
 				_app.mutating = false;

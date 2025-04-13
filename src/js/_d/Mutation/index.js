@@ -12,29 +12,42 @@ export default class Mutation {
 		const _app = _A;
 
 		_app.e.off();
-		this.fx.out({ cb: () => _app.page.update() });
+		_app.page.update();
 	}
 
 	in() {
 		const _app = _A;
-		const _rgl = _app.rgl;
-		const _e = _app.e;
+		const { is, was, rgl, e } = _app;
 		const url = _app.route.new.url;
 
-		_app.page.insertNew();
-		_app.page.removeOld();
+		const isWo = is.wo && was.wo && _app.target !== "back";
+		const outType = isWo ? "outWo" : "out";
+		const inType = isWo ? "inWo" : "in";
 
-		if (isDef(_app.data.gl[url]) && isUnd(_rgl._[url])) {
+		this.$1 = this.fx[outType];
+		this.$2 = this.fx[inType];
+
+		if (isDef(_app.data.gl[url]) && isUnd(rgl._[url])) {
 			new Load(() => {
-				_rgl.clear();
-				_rgl.init();
-				_e.init();
-				this.fx.in();
+				this.$1(() => {
+					_app.page.insertNew();
+					_app.page.removeOld();
+
+					rgl.init();
+					e.init();
+
+					this.$2();
+				});
 			});
 		} else {
-			_rgl.clear();
-			_e.init();
-			this.fx.in();
+			this.$1(() => {
+				_app.page.insertNew();
+				_app.page.removeOld();
+
+				e.init();
+
+				this.$2();
+			});
 		}
 	}
 }

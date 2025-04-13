@@ -100,8 +100,26 @@ export default class GLWork {
 		const d = opt.d;
 		const e = opt.e;
 
+		const ease = this.tex[0].move.ease;
+		const scale = 0.2;
+		const x = -50;
+
+		ease.scale = scale;
+		ease.x = x;
+
+		const anim = new Motion({
+			d,
+			u: ({ pr }) => {
+				const prog = Ease[e](pr);
+				ease.scale = Lerp(scale, 0, prog);
+				ease.x = Lerp(x, 0, prog);
+			},
+		});
+
 		return {
-			play: () => {},
+			play: () => {
+				anim.play();
+			},
 		};
 	}
 

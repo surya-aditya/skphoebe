@@ -2,7 +2,6 @@ import Motion from "../../../Motion";
 import Page from "../../Page";
 
 import { Get, Opacity, PE } from "../../../utils/dom";
-import { De } from "../../../utils/math";
 
 export default class FxIntro {
 	constructor() {
@@ -32,10 +31,10 @@ export default class FxIntro {
 
 		const nav = Get.id("n");
 		Opacity(nav, _A.is.wo ? 0 : 1);
-		PE.n(nav);
+		if (_A.is.wo) PE.n(nav);
 
 		introNu.play();
 		intro.play();
-		new De(() => page.play(), d + de).run();
+		page.play();
 	}
 }

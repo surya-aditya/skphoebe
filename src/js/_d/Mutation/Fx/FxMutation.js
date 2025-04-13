@@ -4,20 +4,25 @@ import { Get, Opacity, PE } from "../../../utils/dom";
 
 export default class FxMutation {
 	constructor() {
-		const t = (this.t = Get.id("lo-bg"));
-		const { d, e } = _A.tr.o;
+		this.t = Get.id("lo");
+		this.bg = Get.id("lo-bg");
+		const { d, e } = _A.t.o;
 
-		this.tA = new Motion({ el: t, p: { o: [0, 1] }, d, e });
+		console.log(t, this.bg);
+
+		this.bgA = new Motion({ el: bg, p: { o: [0, 1] }, d, e });
 	}
 
-	out(options) {
+	out(opt) {
+		const _app = _A;
+
 		PE.a(this.t);
 
 		const nav = Get.id("n");
-		Opacity(nav, _A.is.wo ? 0 : 1);
-		PE[_A.is.wo ? "n" : "a"](nav);
+		Opacity(nav, _app.is.wo ? 0 : 1);
+		PE[_app.is.wo ? "n" : "a"](nav);
 
-		this.tA.play({ cb: options.cb });
+		this.bgA.play({ cb: opt.cb });
 	}
 
 	in() {
@@ -27,12 +32,27 @@ export default class FxMutation {
 		_act.mutation();
 		new Page({ intro: false }).play();
 
-		this.tA.play({
+		this.bgA.play({
 			reverse: true,
 			cb: () => {
 				_act.static();
 				PE.n(this.t);
 			},
 		});
+	}
+
+	outWo(cb) {
+		cb();
+	}
+
+	inWo() {
+		const _app = _A;
+		const rgl = _app.rgl;
+		const act = rgl.act;
+
+		act.mutation();
+		act.static();
+
+		new Page({ intro: false }).play();
 	}
 }

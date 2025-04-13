@@ -47,28 +47,20 @@ export default class FxScroll {
 		for (let i = 0; i < this.sL; i++) {
 			index++;
 
-			let y = this.visible[i] ? -7 : 113;
+			let y = this.visible[i] ? 0 : 110;
 			this.sSL[i].resize({
 				tag: {
 					start: `<div class="y_"><div class="y" style="transform: translate3d(0, ${y}%, 0);">`,
 					end: "</div></div>",
 				},
 			});
-
-			if (this.visible[i]) {
-				const classLine = Get.cl("l-de", this.y[i])[0];
-				if (classLine) {
-					classLine.style.transition = "none";
-					Cl.a(classLine, "o");
-				}
-			}
 		}
 	}
 
 	resizeA() {
 		let index = -1;
 		const tr = _A.t;
-		const yDur = tr.y.s.d;
+		let yDur = tr.y.s.d;
 		const yEase = tr.y.s.e;
 
 		for (let i = 0; i < this.yL; i++) {
@@ -80,19 +72,19 @@ export default class FxScroll {
 
 				let delay = 60;
 
-				if (this.y[i].id === "ab-de1-l" || this.y[i].id === "ab-de1-co") {
-					delay = 100;
-				}
-
 				this.fx[index] = new Timeline();
 
 				for (let j = 0; j < calcData._.domL; j++) {
 					let de = j === 0 ? calcData.de : delay;
 
 					if (j < calcData._.domL) {
+						if (calcData._.dom[j].closest(".t-y").tagName === "H1") {
+							yDur += 300;
+						}
+
 						this.fx[index].from({
 							el: calcData._.dom[j],
-							p: { y: [113, -7] },
+							p: { y: [110, 0] },
 							d: yDur,
 							e: yEase,
 							de,
@@ -105,19 +97,12 @@ export default class FxScroll {
 						for (let li = 0; li < calcData.line.domL; li++) {
 							const line = calcData.line.dom[li];
 
-							if (line.classList.contains("rtl")) {
-								p = { x: [102, 0] };
-							}
-
 							this.fx[index].from({
 								el: line.children[0],
 								p,
 								d: yDur,
 								e: yEase,
 								de: de + 300,
-								cb: () => {
-									if (Cl.co(line, "l-de")) Cl.a(line, "o");
-								},
 							});
 						}
 					}

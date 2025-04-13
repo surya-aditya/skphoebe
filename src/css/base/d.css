@@ -53,6 +53,26 @@ canvas {
 	box-sizing: border-box;
 }
 
+.y_ {
+	overflow: hidden;
+}
+
+.y_,
+.y {
+	display: block;
+}
+
+.y {
+	position: relative;
+	will-change: transform;
+	transform: translate3d(0, 110%, 0);
+	white-space: normal;
+}
+
+.y_:not(:first-child) {
+	text-indent: 0;
+}
+
 #lo,
 #lo-pr,
 #lo-bg {
