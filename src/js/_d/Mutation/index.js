@@ -13,6 +13,7 @@ export default class Mutation {
 
 		_app.e.off();
 		_app.page.update();
+		_app.e.n.menuA();
 	}
 
 	in() {

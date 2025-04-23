@@ -35,7 +35,7 @@ export const template = (data) => {
 
 		allRecognitionList += html`
 			<li>
-				<h2>${project.project_name}</h2>
+				<h2><span>${project.project_name}</span></h2>
 				<ul>
 					${projectRecognitionList}
 				</ul>

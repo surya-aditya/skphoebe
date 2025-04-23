@@ -1,8 +1,8 @@
-import { Sa } from "../../utils/dom";
+import { BM, Cl, Ga, Get, L, Sa } from "../../utils/dom";
 
 export default class Nav {
 	constructor() {
-		BM(this, ["fn", "fnTh"]);
+		BM(this, ["fnTh"]);
 	}
 
 	intro() {
@@ -10,6 +10,20 @@ export default class Nav {
 	}
 
 	init() {}
+
+	menuA() {
+		const _app = _A;
+		const route = _app.route.new.url;
+		const menu = Get.id("n1");
+		const menuChildren = Get.tag("a", menu);
+
+		for (let i = 0; i < menuChildren.length; i++) {
+			const anchor = menuChildren[i];
+			const link = Ga(anchor, "href");
+			const isMatch = link === route ? "a" : "r";
+			Cl[isMatch](menu.children[i], "on");
+		}
+	}
 
 	fnTh() {
 		const currentTheme = localStorage.getItem("th");

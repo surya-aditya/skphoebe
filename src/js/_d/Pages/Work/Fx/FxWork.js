@@ -6,7 +6,7 @@ export default class FxWork {
 		const page = _A.e.p();
 		const pr = Get.cl("wo-p-c", page)[0].children;
 
-		const deMax = pr.length * 60;
+		const deMax = pr.length * 25;
 
 		let prA = [];
 		for (let i = 0; i < pr.length; i++) {
@@ -14,7 +14,7 @@ export default class FxWork {
 				el: pr[i],
 				p: { y: [100, 0, "px"], o: [0, 1] },
 				d: opt.d,
-				de: 60 * i,
+				de: 25 * i,
 				e: opt.e,
 			});
 		}

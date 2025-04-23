@@ -1,5 +1,5 @@
 import Motion from "../../../Motion";
-import { BM, Get, IndexClass, IndexList, L, Re } from "../../../utils/dom";
+import { BM, Cl, Get, IndexClass, IndexList, L, Re } from "../../../utils/dom";
 import { Ease } from "../../../utils/easings";
 import { Damp, Lerp, Une } from "../../../utils/math";
 
@@ -20,6 +20,8 @@ export default class GLGeneral {
 		this.li = Get.cl("ge-li", page);
 		this.liL = this.li.length;
 
+		this.li_ = [];
+
 		this.tex = textures.plane.main;
 		this.texL = textures.planeL.main;
 
@@ -34,6 +36,17 @@ export default class GLGeneral {
 				tb: 0,
 				bt: active,
 			};
+		}
+
+		let el = this.li[0];
+		this.index.cur = 0;
+
+		while (el && el.tagName !== "SECTION") {
+			if (el.tagName === "LI") {
+				Cl.a(el, "on");
+				this.li_.push(el);
+			}
+			el = el.parentElement;
 		}
 
 		this.resize();
@@ -84,12 +97,25 @@ export default class GLGeneral {
 	}
 
 	fnOver(event) {
-		const index = IndexClass(event.target, "ge-li");
-		console.log(index);
+		const target = event.currentTarget;
+		const newIndex = IndexClass(target, "ge-li");
 
-		if (index === this.index.tar) return;
+		if (this.index.cur === newIndex) return;
 
-		this.index.cur = index;
+		this.index.tar = this.index.cur;
+		this.index.cur = newIndex;
+
+		this.li_.forEach((el) => Cl.r(el, "on"));
+		this.li_.length = 0;
+
+		let el = target;
+		while (el && el.tagName !== "SECTION") {
+			if (el.tagName === "LI") {
+				Cl.a(el, "on");
+				this.li_.push(el);
+			}
+			el = el.parentElement;
+		}
 	}
 
 	l(action) {

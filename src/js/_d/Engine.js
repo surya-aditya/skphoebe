@@ -12,6 +12,7 @@ import { default as RafR } from "../utils/rafr";
 import ScrollInertia from "./Scroll/ScrollInertia";
 import Work from "./Pages/Work";
 import FxScroll from "./Scroll/FxScroll";
+import Nav from "./Partials/Nav";
 
 function Page$1(suffix) {
 	const elements = Get.cl("p" + (suffix || ""));
@@ -40,6 +41,8 @@ export default class Engine {
 		this.s = new Scroll();
 		this.c = new Cursor();
 
+		this.n = new Nav();
+
 		this.ho = new Home();
 		this.ge = new General();
 		this.pl = new Playground();
@@ -50,6 +53,8 @@ export default class Engine {
 
 	intro() {
 		this.s.intro();
+
+		this.n.intro();
 	}
 
 	init() {
@@ -57,6 +62,8 @@ export default class Engine {
 
 		this.s.init();
 		this.i = new ScrollInertia();
+
+		this.n.init();
 
 		this._s.initA();
 		this.ho.init();
@@ -88,6 +95,8 @@ export default class Engine {
 	on() {
 		this.s.on();
 
+		this.n.on();
+
 		this.ho.on();
 		this.ge.on();
 		this.wo.on();
@@ -95,6 +104,8 @@ export default class Engine {
 
 	off() {
 		this.s.off();
+
+		this.n.off();
 
 		this.ho.off();
 		this.ge.off();

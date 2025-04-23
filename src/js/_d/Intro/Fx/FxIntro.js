@@ -33,6 +33,8 @@ export default class FxIntro {
 		Opacity(nav, _A.is.wo ? 0 : 1);
 		if (_A.is.wo) PE.n(nav);
 
+		_A.e.n.menuA();
+
 		introNu.play();
 		intro.play();
 		page.play();

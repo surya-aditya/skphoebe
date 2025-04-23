@@ -23,6 +23,49 @@
 	column-gap: calc(100 * var(--vw));
 }
 
+#n1 > a {
+	position: relative;
+	padding: 0 calc(15 * var(--vw));
+
+	transition: 300ms;
+}
+
+#n1 > a::before {
+	content: "[";
+	left: 0;
+	transform: translateX(-50%);
+}
+
+#n1 > a::after {
+	content: "]";
+	right: 0;
+	transform: translateX(50%);
+}
+
+#n1 > a::before,
+#n1 > a::after {
+	position: absolute;
+	top: 0;
+	opacity: 0;
+
+	transition: 300ms;
+}
+
+#n1 > a:hover,
+#n1 > a.on {
+	font-weight: 600;
+
+	&::before {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	&::after {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
 #n2 svg > circle {
 	fill: var(--tx-light);
 }

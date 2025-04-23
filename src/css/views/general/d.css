@@ -60,6 +60,34 @@
 		position: relative;
 		width: calc((var(--c) * 3) + (var(--g) * 3));
 	}
+
+	& h2 span {
+		position: relative;
+		width: fit-content;
+		display: block;
+		padding: 0 calc(15 * var(--vw));
+	}
+
+	& h2 span::before {
+		content: "[";
+		left: 0;
+		transform: translateX(-50%);
+	}
+
+	& h2 span::after {
+		content: "]";
+		right: 0;
+		transform: translateX(50%);
+	}
+
+	& h2 span::before,
+	& h2 span::after {
+		position: absolute;
+		top: 0;
+		opacity: 0;
+
+		transition: 300ms;
+	}
 }
 
 #ge-re > ul > li > ul > li {
@@ -82,6 +110,20 @@
 	& span:nth-of-type(2) {
 		width: var(--c);
 		text-align: right;
+	}
+}
+
+#ge-re ul li.on {
+	& > h2 span::before,
+	& > h2 span::after {
+		opacity: 1;
+		transform: translateX(0);
+	}
+
+	& > h2,
+	& > h3,
+	&.ge-li {
+		font-weight: 600;
 	}
 }
 
