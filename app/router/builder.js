@@ -2,7 +2,6 @@ import RouterManager from "./index.js";
 
 import { getAllByType, getSingle } from "../lib/prismic.js";
 import { compileTpl } from "../utils/compiler.js";
-import { cleanUrl, version } from "../utils/index.js";
 
 export default class RouterBuilder {
 	constructor(routes, device, shared = {}) {
@@ -90,6 +89,10 @@ export default class RouterBuilder {
 
 						this.routes[path] = id;
 						this.cache[path] = { title, html };
+
+						if (this.device === "d" && id === "pl") {
+							this.cache[path].htmlp = await compileTpl(`${template}/p`, data);
+						}
 					} else {
 						this.cache[path] = { title, html: "" };
 						this.routes[path] = id;
@@ -193,16 +196,16 @@ export default class RouterBuilder {
 			},
 		]);
 
-		for (let i = 0; i < data.gallery.length; i++) {
-			const image = data.gallery[i].gallery_image;
+		// for (let i = 0; i < data.gallery.length; i++) {
+		// 	const image = data.gallery[i].gallery_image;
 
-			gl.push([
-				{
-					type: "img",
-					url: image.url,
-				},
-			]);
-		}
+		// 	gl.push([
+		// 		{
+		// 			type: "img",
+		// 			url: image.url,
+		// 		},
+		// 	]);
+		// }
 
 		gl.push([{ type: "img", url: data.nextProject.image.url }]);
 

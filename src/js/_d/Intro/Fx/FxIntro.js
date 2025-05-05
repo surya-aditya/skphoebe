@@ -2,6 +2,7 @@ import Motion from "../../../Motion";
 import Page from "../../Page";
 
 import { Get, Opacity, PE } from "../../../utils/dom";
+import { De } from "../../../utils/math";
 
 export default class FxIntro {
 	constructor() {

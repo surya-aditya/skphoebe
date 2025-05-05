@@ -2,6 +2,7 @@ import Load from "../Load";
 import FxMutation from "./Fx/FxMutation";
 
 import { isDef, isUnd } from "../../utils/dom";
+import { De } from "../../utils/math";
 
 export default class Mutation {
 	constructor() {
@@ -37,6 +38,8 @@ export default class Mutation {
 					rgl.init();
 					e.init();
 
+					if (is.wo || is.pl) new De(() => e.r.run(), 1).run();
+
 					this.$2();
 				});
 			});
@@ -46,6 +49,8 @@ export default class Mutation {
 				_app.page.removeOld();
 
 				e.init();
+
+				if (is.wo || is.pl) new De(() => e.r.run(), 1).run();
 
 				this.$2();
 			});

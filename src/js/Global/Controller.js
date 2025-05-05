@@ -121,10 +121,17 @@ export default class Controller {
 
 				this.add(document.body, "afterbegin", res.body);
 				this._ = Get.id("_");
+				this._p = Get.id("_p");
 
 				let url = currentUrl;
 
 				this.add(this._, "beforeend", this.cache[url].html);
+
+				if (this.isD) {
+					if (this.cache[url].htmlp) {
+						this.add(this._p, "beforeend", this.cache[url].htmlp);
+					}
+				}
 
 				this.trM = new this.trM();
 
@@ -150,6 +157,7 @@ export default class Controller {
 		const _app = _A;
 		const route = _app.route;
 		const cache = this.cache[route.new.url];
+		const cacheOld = this.cache[route.old.url];
 
 		document.title = cache.title;
 
@@ -157,11 +165,20 @@ export default class Controller {
 
 		_app.page.insertNew = () => {
 			this.add(this._, "beforeend", cache.html);
+
+			if (this.isD && cache.htmlp) {
+				this.add(this._p, "beforeend", cache.htmlp);
+			}
 		};
 
 		_app.page.removeOld = () => {
 			const child = this._.children[0];
 			child.parentNode.removeChild(child);
+
+			if (this.isD && cacheOld.htmlp) {
+				const child = this._p.children[0];
+				child.parentNode.removeChild(child);
+			}
 		};
 
 		this.trM.in();

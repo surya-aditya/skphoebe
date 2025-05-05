@@ -1,4 +1,5 @@
 import { linkSvg } from "../partials/svg";
+import { DefaultImageUrl } from "../utils/Resource";
 
 function getTargetHeight(width, aspectRatio = 1.778) {
 	return Math.round(width / aspectRatio);
@@ -23,18 +24,40 @@ export const template = (data) => {
 		const image = gallery[i].gallery_image;
 		const ratio = image.dimensions.width / image.dimensions.height;
 
-		const width = 240;
+		const width = 1200;
 		const height = getTargetHeight(width, ratio);
-		const url = image.url + "&w=" + width + "0&h=" + height;
+		const url = image.url + "&w=" + width + "&h=" + height;
+
 		galleryList += html`
 			<div class="wo-r">
-				<div class="_me" style="aspect-ratio: ${ratio.toFixed(5)}"></div>
+				<div class="r_">
+					<img
+						class="r r-o"
+						width=${width}
+						height=${height}
+						data-src="${url}"
+						src="${DefaultImageUrl}"
+						style="aspect-ratio: ${ratio.toFixed(5)}"
+					/>
+				</div>
 			</div>
 		`;
 
+		const widthThumb = 240;
+		const heightThumb = getTargetHeight(widthThumb, ratio);
+		const urlThumb = image.url + "&w=" + widthThumb + "0&h=" + heightThumb;
 		minimapGallery += html`
 			<div class="wo-p-r">
-				<img src="${url}" class="_me" style="aspect-ratio: ${ratio.toFixed(5)}"></img>
+				<div class="r_">
+					<img
+						data-src="${urlThumb}"
+						src="${DefaultImageUrl}"
+						class="r r-o"
+						style="aspect-ratio: ${ratio.toFixed(5)}"
+						width=${widthThumb}
+						height=${heightThumb}
+					/>
+				</div>
 			</div>
 		`;
 	}

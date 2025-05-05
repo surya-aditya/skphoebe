@@ -23,6 +23,7 @@ export default class Intro {
 		_rgl.init();
 		_e.init();
 		_rgl.run();
+		_e.r.run();
 		_e.run();
 
 		new FxIntro();

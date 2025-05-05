@@ -13,6 +13,7 @@ import ScrollInertia from "./Scroll/ScrollInertia";
 import Work from "./Pages/Work";
 import FxScroll from "./Scroll/FxScroll";
 import Nav from "./Partials/Nav";
+import LoadInertia from "./LoadInertia";
 
 function Page$1(suffix) {
 	const elements = Get.cl("p" + (suffix || ""));
@@ -41,6 +42,8 @@ export default class Engine {
 		this.s = new Scroll();
 		this.c = new Cursor();
 
+		this.r = new LoadInertia();
+
 		this.n = new Nav();
 
 		this.ho = new Home();
@@ -63,6 +66,7 @@ export default class Engine {
 		this.s.init();
 		this.i = new ScrollInertia();
 
+		this.r.init();
 		this.n.init();
 
 		this._s.initA();
@@ -78,6 +82,8 @@ export default class Engine {
 		this._s.resizeB();
 		this.s.resize();
 		this.i.resize();
+
+		this.r.resize();
 
 		this._s.resizeA();
 		this.ho.resize();
@@ -105,6 +111,7 @@ export default class Engine {
 	off() {
 		this.s.off();
 
+		this.r.off();
 		this.n.off();
 
 		this.ho.off();

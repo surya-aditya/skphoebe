@@ -5,5 +5,6 @@ export const template = (data) => {
 		<canvas id="__"></canvas>
 		<main id="_"></main>
 		${Nav()}
+		<div id="_p"></div>
 	`;
 };

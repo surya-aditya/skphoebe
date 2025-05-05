@@ -275,8 +275,9 @@
 		padding-bottom: calc(80 * var(--vw));
 	}
 
-	._me {
+	.r {
 		height: 100%;
+		transform: scale(1.01);
 	}
 }
 
@@ -299,8 +300,16 @@
 		padding-bottom: calc((80 * var(--vw)) * 0.1);
 	}
 
-	._me {
+	.r {
 		height: 100%;
+	}
+}
+
+.wo-r,
+.wo-p-r {
+	& .r_ {
+		background-color: var(--lazy);
+		overflow: hidden;
 	}
 }
 
