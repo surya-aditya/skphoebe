@@ -22,9 +22,15 @@ export const template = (data) => {
 		`;
 	}
 
-	return html` <div id="pl-p">
-		<ul>
-			${playgroundFull}
-		</ul>
+	return html` <div id="pl-p_">
+		<div id="pl-p-bg"></div>
+		<div id="pl-p">
+			<div>
+				<div id="pl-p-cl">Close</div>
+			</div>
+			<ul>
+				${playgroundFull}
+			</ul>
+		</div>
 	</div>`;
 };

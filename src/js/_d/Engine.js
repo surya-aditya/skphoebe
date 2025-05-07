@@ -105,6 +105,7 @@ export default class Engine {
 
 		this.ho.on();
 		this.ge.on();
+		this.pl.on();
 		this.wo.on();
 	}
 
@@ -116,6 +117,7 @@ export default class Engine {
 
 		this.ho.off();
 		this.ge.off();
+		this.pl.off;
 		this.wo.off();
 	}
 

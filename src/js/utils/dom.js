@@ -209,6 +209,10 @@ export const T = (element, xValue, yValue, unit = "%") => {
 	element.style.transform = `translate3d(${xValue}${unit}, ${yValue}${unit}, 0)`;
 };
 
+export const clipFn = (left, right) => {
+	return `inset(0 ${R(left)}% 0 ${R(right)}%)`;
+};
+
 export const Clone = (data) => JSON.parse(JSON.stringify(data));
 
 export function Throttle(fn, limit) {

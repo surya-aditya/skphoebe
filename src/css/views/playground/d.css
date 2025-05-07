@@ -9,6 +9,8 @@
 }
 
 .pl-li {
+	cursor: pointer;
+
 	&:nth-child(17n + 3),
 	&:nth-child(17n + 10),
 	&:nth-child(17n + 16) {
@@ -23,6 +25,10 @@
 	&:nth-child(17n + 7),
 	&:nth-child(17n + 13) {
 		margin-left: calc(315 * var(--vw));
+	}
+
+	& * {
+		pointer-events: none;
 	}
 
 	& ._me {
@@ -52,8 +58,39 @@
 }
 
 #pl-p {
+	position: relative;
+	width: 100%;
+	height: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	padding: var(--m) 0;
+
+	box-sizing: border-box;
+
 	opacity: 0;
-	pointer-events: none;
+	z-index: 2;
+}
+
+#pl-p-bg {
+	position: absolute;
+
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+
+	background-color: var(--bg);
+	opacity: 0;
+	z-index: 1;
+}
+
+#pl-p_ {
+	position: relative;
+	width: 100%;
+	height: 100vh;
 }
 
 #pl-p,
@@ -63,6 +100,20 @@
 	height: 100%;
 }
 
+#pl-p_,
+#pl-p,
+#pl-p ul,
+#pl-p .pl-p-li {
+	pointer-events: none;
+}
+
+#pl-p ul {
+	width: calc((var(--c) * 12) + (var(--g) * 11));
+	height: calc(916 * var(--vw));
+	aspect-ratio: 1.778;
+	left: var(--m);
+}
+
 #pl-p .pl-p-li {
 	position: absolute;
 	top: 0;
@@ -70,7 +121,13 @@
 	width: 100%;
 	height: 100%;
 
+	clip-path: inset(0 100% 0 0);
+
 	overflow: hidden;
+
+	&:first-child {
+		clip-path: inset(0 0 0 0);
+	}
 
 	& img {
 		position: absolute;
