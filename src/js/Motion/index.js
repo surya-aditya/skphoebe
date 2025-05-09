@@ -256,14 +256,17 @@ export default class Motion {
 			? `${prop[propI.r2].name}(${prop[propI.r2].curr}deg)`
 			: 0;
 
+		const scaleX = Has(propI, "sx") ? `scaleX(${prop[propI.sx].curr})` : 0;
 		const scale = Has(propI, "s") ? `scale(${prop[propI.s].curr})` : 0;
 
 		const transform =
-			translate3d + rotate + rotate2 + scale === 0
+			translate3d + rotate + rotate2 + scaleX + scale === 0
 				? 0
-				: [translate3d, rotate, rotate2, scale]
+				: [translate3d, rotate, rotate2, scaleX, scale]
 						.filter((val) => val !== 0)
 						.join(" ");
+
+		console.log(transform);
 
 		const opacity = Has(propI, "o") ? prop[propI.o].curr : -1;
 

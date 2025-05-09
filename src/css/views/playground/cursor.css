@@ -1,0 +1,57 @@
+#cu-c,
+#cu-b {
+	position: absolute;
+	top: 0;
+	left: 0;
+	pointer-events: none;
+	mix-blend-mode: difference;
+	z-index: 9996;
+
+	opacity: 0;
+	transition: opacity 300ms;
+}
+
+#cu-c-c {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%) scaleX(1);
+	transform-origin: center center;
+	transition: transform 800ms var(--o6);
+	will-change: transform;
+
+	&.fl {
+		transform: translate(-50%, -50%) scaleX(-1);
+	}
+}
+
+#cu-b {
+	display: flex;
+	justify-content: space-between;
+}
+
+@media (min-aspect-ratio: 1.6) {
+	#cu-c,
+	#cu-b {
+		width: calc(200 * var(--vh));
+		height: calc(98 * var(--vh));
+	}
+
+	#cu-c-c {
+		width: calc(14.66 * var(--vh));
+		height: calc(23.68 * var(--vh));
+	}
+}
+
+@media (max-aspect-ratio: 1.6) {
+	#cu-c,
+	#cu-b {
+		width: calc(200 * var(--vw));
+		height: calc(98 * var(--vw));
+	}
+
+	#cu-c-c {
+		width: calc(14.66 * var(--vw));
+		height: calc(23.68 * var(--vw));
+	}
+}

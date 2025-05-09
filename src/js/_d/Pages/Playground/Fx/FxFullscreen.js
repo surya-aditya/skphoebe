@@ -135,7 +135,6 @@ export default class FxFullscreen {
 
 	loop() {
 		const _app = _A;
-		const mm = _app.e.c._;
 		const { cur } = _app.e.s._[_app.route.new.url];
 
 		if (!this.visibleFirst && cur > this.limit) {
@@ -157,14 +156,6 @@ export default class FxFullscreen {
 			}
 
 			if (hasMovement) this.moveL++;
-		}
-
-		if (_A.e.pl.fx$1.isShow) {
-			if (mm[0] > _app.winSemi.w) {
-				document.body.style.cursor = "e-resize";
-			} else {
-				document.body.style.cursor = "w-resize";
-			}
 		}
 	}
 }
