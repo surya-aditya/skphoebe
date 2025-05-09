@@ -71,7 +71,7 @@ export default class FxCursor {
 
 	loop() {
 		const _app = _A;
-		const { isShow } = _A.e.pl.fx$1;
+		const { isShow } = _app.e.pl.fx$1;
 		const mm = _app.e.c._;
 
 		if (!isShow) return;

@@ -266,8 +266,6 @@ export default class Motion {
 						.filter((val) => val !== 0)
 						.join(" ");
 
-		console.log(transform);
-
 		const opacity = Has(propI, "o") ? prop[propI.o].curr : -1;
 
 		for (; elL-- && !isUnd(this.v.el[elL]); ) {

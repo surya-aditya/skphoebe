@@ -20,13 +20,17 @@ export default class FxThumbnail {
 		const index = IndexList(target);
 		const fullscreen = _app.e.pl.fx$2;
 
-		fullscreen.fx({ a: "show", index });
+		console.log(target.id);
+		const action = target.id === "pl-p-cl" ? "hide" : "show";
+
+		fullscreen.fx({ a: action, index });
 	}
 
 	l(action) {
 		for (let i = 0; i < this.liL; i++) {
 			L(this.li[i], action, "click", this.fn);
 		}
+		L(Get.id("pl-p-cl"), action, "click", this.fn);
 	}
 
 	on() {

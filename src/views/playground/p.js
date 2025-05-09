@@ -1,9 +1,11 @@
 export const template = (data) => {
 	const gallery = data.list;
+	const galleryL = gallery.length;
 
 	let playgroundFull = "";
+	let playgroundContent = "";
 
-	for (let i = 0; i < gallery.length; i++) {
+	for (let i = 0; i < galleryL; i++) {
 		const item = gallery[i];
 
 		const aspectRatio = 1.778;
@@ -20,13 +22,42 @@ export const template = (data) => {
 				/>
 			</li>
 		`;
+
+		playgroundContent += html`
+			<li>
+				<div class="pl-p-ti">${item.title || ""}</div>
+				<div class="pl-p-de">${item.description || ""}</div>
+			</li>
+		`;
 	}
 
 	return html` <div id="pl-p_">
 		<div id="pl-p-bg"></div>
 		<div id="pl-p">
 			<div>
-				<div id="pl-p-cl">Close</div>
+				<ul id="pl-p-co">
+					${playgroundContent}
+				</ul>
+				<div id="pl-p-pagi_">
+					<div id="pl-p-pagi">
+						<span id="pl-p-pagi-c">01</span>
+						<span id="pl-p-pagi-s"> / </span>
+						<span id="pl-p-pagi-t">${galleryL}</span>
+					</div>
+				</div>
+				<div id="pl-p-cta_">
+					<a id="pl-p-cta">
+						<svg role="graphics-symbol">
+							<use href="#enter"></use>
+						</svg>
+						<span>Visit Website</span>
+					</a>
+				</div>
+				<div id="pl-p-cl_">
+					<div id="pl-p-cl" class="t-br">
+						<span>Close</span>
+					</div>
+				</div>
 			</div>
 			<ul>
 				${playgroundFull}
