@@ -162,6 +162,9 @@ export default class FxFullscreen {
 
 	upAll(index) {
 		const oldIndex = this.index;
+
+		if (this.index === index) return;
+
 		this.index = index;
 
 		this.no.textContent = pad(index + 1, 2);
