@@ -36,6 +36,14 @@ export default class FxFullscreen {
 		this.max = this.liL - 1;
 		this.index = 0;
 
+		this.par = Get.id("pl-p_");
+
+		this.p_ = {
+			y: { cur: 10, tar: 10 },
+			ct: { cur: 0, tar: 0 },
+			cb: { cur: 100, tar: 100 },
+		};
+
 		this.p = {
 			x: [],
 			cl: [],
@@ -148,16 +156,27 @@ export default class FxFullscreen {
 		const action = opt.a;
 		const isShow = action === "show";
 		const pointerEvents = isShow ? "a" : "n";
-		const duration = isShow ? 1200 : 1e3;
-		const ease = isShow ? "o6" : "o6";
 
 		PE[pointerEvents](this.a);
 		PE[pointerEvents](this.__);
+		PE[pointerEvents](this.par);
+
+		if (isShow) {
+			this.p_.y.cur = 10;
+			this.p_.ct.cur = 100;
+			this.p_.cb.cur = 0;
+
+			this.p_.y.tar = 0;
+			this.p_.cb.tar = 0;
+		} else {
+			this.p_.ct.cur = 0;
+			this.p_.cb.cur = 0;
+
+			this.p_.y.tar = -20;
+			this.p_.cb.tar = 100;
+		}
 
 		if (isShow) this.upAll(opt.index);
-
-		Opacity(this.__, isShow ? 1 : 0);
-		Opacity(Get.id("pl-p-bg"), isShow ? 1 : 0);
 	}
 
 	upAll(index) {
@@ -219,6 +238,15 @@ export default class FxFullscreen {
 	loop() {
 		const _app = _A;
 		const { isShow } = _app.e.pl.fx$1;
+
+		this.p_.y.cur = Damp(this.p_.y.cur, this.p_.y.tar, this.ease);
+		this.p_.ct.cur = Damp(this.p_.ct.cur, this.p_.ct.tar, this.ease);
+		this.p_.cb.cur = Damp(this.p_.cb.cur, this.p_.cb.tar, this.ease);
+
+		this.par.style.clipPath = `inset(${R(this.p_.ct.cur)}% 0 ${R(
+			this.p_.cb.cur
+		)}% 0)`;
+		T(this.par, 0, R(this.p_.y.cur));
 
 		if (!isShow) return;
 
